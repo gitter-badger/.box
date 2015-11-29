@@ -1,0 +1,44 @@
+#!/usr/bin/env bash
+# Usage: box ruby
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help ruby
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Ruby"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	require_brew openssl
+	require_brew graphviz
+	require_brew imagemagick
+	require_brew qt
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	sudo apt-get install curl
+	sudo apt-get install openssl
+	sudo apt-get install graphviz
+	sudo apt-get install imagemagick
+	sudo apt-get install qt-sdk
+fi
+
+echo -e "\n=> Check for RVM Installation"
+if [ ! $(command -v rvm) == "" ]; then
+  echo -e "\n=> RVM Installed"
+else
+  echo -e "\n=> Install RVM"
+	gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
+  curl -sSL https://get.rvm.io | bash -s stable --ruby
+	# echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
+fi
+echo "==> done..."
+
+# tell gem to skip generation of rdocs
+profile_write "gem: --no-ri --no-rdoc" "$HOME/.gemrc"

@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+# Usage: box ctf
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help ctf
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Capture the flag"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	die 'implementation unfinished'
+  require_brew wireshark
+
+  require_cask xquartz
+  require_cask wireshark
+
+	# # Investigate these tools more thouroughly before implementing
+	# # Install some CTF tools; see https://github.com/ctfs/write-ups
+  require_brew bfg
+  require_brew binwalk
+  require_brew dex2jar
+  require_brew dns2tcp
+  require_brew fcrackzip
+  require_brew foremost
+  require_brew hashpump
+  require_brew hydra
+  require_brew john
+  require_brew knock
+  require_brew nmap
+  require_brew pngcheck
+  require_brew sqlmap
+  require_brew tcpflow
+  # require_brew tcpreplay
+  # unable to find libpcap
+  require_brew tcptrace
+  require_brew ucspi-tcp # `tcpserver` et al.
+  # require_brew xpdf
+  require_brew xz
+	
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'implementation unfinished'
+fi

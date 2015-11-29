@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Usage: box java
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help java
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Java Development Tools"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	# jEnv is a command line tool to help you forget how to set the JAVA_HOME environment variable
+	echo -e "\n=> Install Java Version Manager"
+	brew tap jenv/jenv
+	require_brew jenv
+
+	coderonin_write 'export PATH="$HOME/.jenv/bin:$PATH"'
+	coderonin_write 'if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
+	echo "==> done..."
+
+	# install casks
+	require_cask java
+	require_cask eclipse-ide
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'implementation unfinished'
+fi

@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+# Usage: box essentials
+# Summary: write a summary for your new command
+# Help: Customize in `~/.laptop.local`
+# ------------------------------
+#   Your `~/.laptop.local` is run at the end of the Essentials command.
+#   Put desired customizations there.
+#   See .laptop.local.example for example usage
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "System Essentials"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  source "$_BOX_ROOT/lib/box-essentials/_darwin.sh"
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+  source "$_BOX_ROOT/lib/box-essentials/_linux.sh"
+fi

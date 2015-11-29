@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Usage: box memcached
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help memcached
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "MemcacheD"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_brew memcached
+
+  # To have launchd start memcached at login:
+  ln -sfv /usr/local/opt/memcached/*.plist ~/Library/LaunchAgents
+  # Then to load memcached now:
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.memcached.plist  
+
+  require_brew memcache-top
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+  die 'implementation unfinished'
+fi

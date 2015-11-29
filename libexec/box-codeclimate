@@ -1,0 +1,33 @@
+#!/usr/bin/env bash
+# Usage: box codeclimate
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help codeclimate
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Codeclimate"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	die 'implementation unfinished'
+
+	require_brew boot2docker
+	boot2docker init
+	boot2docker up
+	require_brew codeclimate
+
+# add lines to cli config
+	# export DOCKER_HOST=tcp://192.168.59.103:2376
+	# export DOCKER_CERT_PATH=/Users/rsherman/.boot2docker/certs/boot2docker-vm
+	# export DOCKER_TLS_VERIFY=1
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'implementation unfinished'
+fi

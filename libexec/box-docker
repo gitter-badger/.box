@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Usage: box docker
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help docker
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Docker"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_brew boot2docker
+  boot2docker init
+  boot2docker start
+  $(boot2docker shellinit)
+  require_brew docker-compose
+
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'not implemented'
+fi

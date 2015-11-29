@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Usage: box xcode
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help xcode
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Xcode"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  bot "Checking Dependencies"
+
+	running "checking Xcode Command Line Tools install"
+  if [[ $(xcode-select -p) != "/Applications/Xcode.app/Contents/Developer" ]]; then
+	  action "  installing"
+	  xcode-select --install
+	fi
+  ok
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'xcode not available for linux'
+fi

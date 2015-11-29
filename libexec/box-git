@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Usage: box git
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help git
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Git"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_brew git-flow
+  # gitignore boilerplate manager
+  require_brew gibo
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	sudo apt-get install git-flow
+  # gitignore boilerplate manager
+  curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
+fi
+
+# backup 
+mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
+# use gibo to populate a sensible global gitignore
+gibo OSX Rails Ruby Python SublimeText Textmate Jetbrains Vagrant >> "$HOME/.gitignore_global"
+
+# see here for available gitignore templates
+# https://github.com/github/gitignore
+
+# see here for gibo
+# https://github.com/simonwhitaker/gibo
+
+git config --global color.ui true
+echo -n "Enter your name and press [ENTER]: "
+read name
+git config --global user.name "$name"
+echo -n "Enter your email and press [ENTER]: "
+read email
+git config --global user.email "$email"
+echo "==> done..."

@@ -1,0 +1,91 @@
+#!/usr/bin/env bash
+# Usage: box nodejs
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help nodejs
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "NodeJS"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  # node version manager
+  # allows per directory node versions with .nvmrc files
+  curl https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
+
+  # nvm load in coderonin file
+  coderonin_write 'export NVM_DIR="$HOME/.nvm"'
+  coderonin_write '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm'
+  
+  # immediately load nvm so we can install node and npm
+  export NVM_DIR="$HOME/.nvm"
+  [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+  nvm install 0.12.7
+
+  nvm alias default 0.12.7
+
+  # ###############################################################################
+  # bot "NPM Globals..."
+  # ###############################################################################
+  # require_npm antic
+  # require_npm bower
+  # # http://ionicframework.com/
+  # require_npm cordova
+  # require_npm ionic
+  # # https://github.com/markdalgleish/bespoke.js
+  # require_npm generator-bespoke
+  # require_npm grunt
+  # require_npm gulp
+  # require_npm jshint
+  # # http://devo.ps/blog/goodbye-node-forever-hello-pm2/
+  # require_npm pm2
+  # require_npm prettyjson
+  # require_npm sails
+  # require_npm supervisor
+  # # https://github.com/sindresorhus/trash
+  # require_npm trash
+  # # https://github.com/MrRio/vtop
+  # require_npm vtop
+  # require_npm yo
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+  #Installing the pre-requisites:
+  sudo apt-get install python-software-properties python g++ make
+  
+  # Add the PPA Repository, which is recommended by Joyent (the maintainers of Node.js):
+  sudo add-apt-repository ppa:chris-lea/node.js
+  
+  # Update the package list:
+  sudo apt-get update
+  
+  # Install Node.js:
+  sudo apt-get install nodejs
+  sudo apt-get install npm
+
+  sudo npm install sails -g
+  # The -g flag ensures that sails is installed globally and can be used as a command-line tool.
+  
+  # js framework package manager
+  sudo npm install -g bower
+fi
+
+# Creating your Sails app
+# You will want to navigate to the directory in which you would like your app to be located, e.g. /var/www and then run:
+#
+# sails new project-name
+# This will add the required files to your project, and create a directory named project-name.
+#
+# Starting up the Sails.js server
+# To view your boilerplate app, you will need to change directory into the project directory and then start the server:
+#
+# cd project-name
+# then:
+#

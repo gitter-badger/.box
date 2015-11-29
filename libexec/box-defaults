@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Usage: box defaults
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help defaults
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "System Defaults"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  source "$_BOX_ROOT/lib/box-defaults/_darwin.sh"
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'implementation unfinished'
+fi

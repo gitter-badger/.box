@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# Usage: box heroku-toolbelt
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help heroku-toolbelt
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Heroku Tools"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	require_cask heroku-toolbelt
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
+fi

@@ -1,0 +1,184 @@
+#!/usr/bin/env bash
+
+###
+# some bash library helpers
+# @author Adam Eivy
+###
+
+# Colors
+ESC_SEQ="\x1b["
+COL_RESET=$ESC_SEQ"39;49;00m"
+COL_RED=$ESC_SEQ"31;01m"
+COL_GREEN=$ESC_SEQ"32;01m"
+COL_YELLOW=$ESC_SEQ"33;01m"
+COL_BLUE=$ESC_SEQ"34;01m"
+COL_MAGENTA=$ESC_SEQ"35;01m"
+COL_CYAN=$ESC_SEQ"36;01m"
+
+function ok() { echo -e "$COL_GREEN[ok]$COL_RESET"; }
+
+function bot() { echo -e "\n$COL_GREEN\[._.]/$COL_RESET - $1"; }
+
+function running() { echo -en "$COL_YELLOW ⇒ $COL_RESET $1: "; }
+
+function action() { echo -e "\n$COL_YELLOW[action]:$COL_RESET\n ⇒ $1..."; }
+
+function warn() { echo -e "$COL_YELLOW[warning]$COL_RESET $1"; }
+
+function error() { echo -e "$COL_RED[error]$COL_RESET $1"; }
+
+function die() { echo "$@" 1>&2 ; exit 1; }
+
+function require_cask() {
+    running "brew cask $1"
+    brew cask list "$1" > /dev/null 2>&1 | true
+    if [[ ${PIPESTATUS[0]} != 0 ]]; then
+        action "brew cask install $1"
+        brew cask install $1
+        if [[ $? != 0 ]]; then
+            error "failed to install $1! aborting..."
+            exit -1
+        fi
+    fi
+    ok
+}
+
+function require_brew() {
+    running "brew $1 $2"
+    brew list "$1" > /dev/null 2>&1 | true
+    if [[ ${PIPESTATUS[0]} != 0 ]]; then
+        action "brew install $1 $2"
+        brew install $1 $2
+        if [[ $? != 0 ]]; then
+            error "failed to install $1! aborting..."
+            exit -1
+        fi
+    fi
+    ok
+}
+
+function require_gem() {
+    running "gem $1"
+    if [[ $(gem list --local | grep "$1" | head -1 | cut -d' ' -f1) != "$1" ]];
+        then
+            action "gem install $1"
+            gem install $1
+    fi
+    ok
+}
+
+function require_npm() {
+    npmlist=$(npm list -g)
+    running "npm $1"
+    echo "$npmlist" | grep "$1"@ > /dev/null
+    if [[ $? != 0 ]]; then
+        action "npm install -g $1"
+        npm install -g $1
+    fi
+    ok
+}
+
+function require_vagrant_plugin() {
+    running "vagrant plugin $1"
+    local vagrant_plugin="$1"
+    local vagrant_plugin_version="$2"
+    local grepExpect=$vagrant_plugin
+    local grepStatus=$(vagrant plugin list | grep "$vagrant_plugin")
+
+    if [[ ! -z "$vagrant_plugin_version" ]]; then
+        grepExpect=$grepExpect' ('$vagrant_plugin_version')'
+    else
+        # we are only looking for the name
+        grepStatus=${grepStatus%% *}
+    fi
+
+    #echo 'checking if '$grepExpect' is installed via grepStatus: '$grepStatus
+
+    if [[ "$grepStatus" != "$grepExpect" ]];
+        then
+            action "installing vagrant plugin $1 $2"
+            if [[ ! -z "$vagrant_plugin_version" ]]; then
+                vagrant plugin install "$vagrant_plugin" --plugin-version "$vagrant_plugin_version"
+            else
+                vagrant plugin install "$vagrant_plugin"
+            fi
+    fi
+    ok
+}
+
+function git_clone_or_update() {
+  if [ -d "$2/.git" ]; then
+    action "update $1"
+    cd "$2"; git pull > /dev/null 2>&1
+    ok
+  else
+    action "clone $1"
+    git clone "$1" "$2" > /dev/null 2>&1 
+    ok
+  fi
+}
+
+function profile_write {
+  # try to ensure we don't create duplicate entries in the .coderonin file
+  touch $2
+  action "ensure that $2 exists in $1"
+  if ! grep -q "$1" "$2" ; then
+    echo "$1" >> "$2"
+  fi
+  ok
+}
+
+function get_platform() {
+  if [ "$(uname -s)" == "Darwin" ]; then
+    # Do something for OSX
+    export NS_PLATFORM="darwin"
+    running "darwin platform detected"
+  elif [ "$(expr substr $(uname -s) 1 5)" == "Linux" ]; then
+  	# Do something for Linux platform
+  	# assume ubuntu - but surely this can be extended to include other distros
+  	export NS_PLATFORM="linux"
+    running "linux platform detected"
+  elif [ "$(expr substr $(uname -s) 1 10)" == "MINGW32_NT" ]; then
+    # Do something for Windows NT platform
+  	export NS_PLATFORM="windows"
+    running "windoze platform detected"
+    die "Windows not supported"
+  fi
+  ok
+}
+
+#  these should happen somewhere else
+# # make a file to hold our customizations so as to not overwrite the users customized profile
+# coderonin_dotfile="$HOME/.coderonin"
+# touch "$coderonin_dotfile"
+#
+# #add line to .profile to source our coderonin_dotfile
+# profile_write "source $coderonin_dotfile" "$HOME/.profile"
+# #add line to .bash_profile to source our coderonin_dotfile
+# profile_write "source $coderonin_dotfile" "$HOME/.bash_profile"
+# #add line to .zshrc to source our coderonin_dotfile
+# profile_write "source $coderonin_dotfile" "$HOME/.zshrc"
+
+function coderonin_write {
+  # try to ensure we don't create duplicate entries in the .coderonin file
+  action "ensure that $1 exists in $coderonin_dotfile"
+  if ! grep -q "$1" "$coderonin_dotfile" ; then
+    echo "$1" >> "$coderonin_dotfile"
+    source "$coderonin_dotfile"
+  fi
+  ok
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+

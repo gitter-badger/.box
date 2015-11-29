@@ -1,0 +1,35 @@
+#!/usr/bin/env bash
+# Usage: box arduino
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help arduino
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Arduino"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	require_brew avrdude
+
+	#install arduino 1.6.3
+	require_cask arduino
+
+	# install FTDI driver
+	# http://www.ftdichip.com/Drivers/D2XX/MacOSX/D2XX1.2.2.dmg
+
+	# TODO - check if arduino 1.6.3 supports digispark controllers
+	# - create cask for digispark arduino ide
+	# digispark
+	# http://sourceforge.net/projects/digistump/files/DigisparkArduino-MacOSX-1.0.4-May19.zip/download
+
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'implementation unfinished'
+fi

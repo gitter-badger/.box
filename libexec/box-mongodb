@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Usage: box mongodb
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help mongodb
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "MongoDB"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	require_brew mongo
+
+	# launch mongodb at startup
+	ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+	# launch mongodb now
+	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv 7F0CEB10
+	echo 'deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' | sudo tee /etc/apt/sources.list.d/mongodb.list
+	sudo apt-get update
+	sudo apt-get install mongodb-org
+fi
+
+# genghisapp is a rubygem that creates a web based ui for browsing mongo databases
+# install genghisapp for all currently installed rubies
+rvm all do gem install bson_ext -v 1.9.2
+rvm all do gem install genghisapp
+
+# automatically install genghisapp ad a global gem in all future ruby installs
+profile_write "genghisapp" "$rvm_path/gemsets/global.gems"

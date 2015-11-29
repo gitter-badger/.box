@@ -1,0 +1,27 @@
+#!/usr/bin/env bash
+# Usage: box dotfiles
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help dotfiles
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Dotfiles"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  cp $_BOX_ROOT/lib/box-dotfiles/_aliases_darwin $HOME/.aliases
+  # this doesn't really belong here
+	cp $_BOX_ROOT/lib/box-dotfiles/_tm_properties $HOME/.tm_properties
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+  cp $_BOX_ROOT/lib/box-dotfiles/_aliases_linux $HOME/.aliases
+fi
+
+coderonin_write "source $HOME/.aliases"

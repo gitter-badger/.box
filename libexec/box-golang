@@ -1,0 +1,64 @@
+#!/usr/bin/env bash
+# Usage: box golang
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help golang
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Golang"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_brew hg
+  require_brew go
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	sudo apt-get install golang 
+fi
+
+# In just a few minutes, go should be all installed.
+ # Next you'll need to setup your $GOPATH
+mkdir "$HOME/go"
+export GOPATH="$HOME/go"
+ 
+# install the go tour code
+go get code.google.com/p/go-tour/gotour
+coderonin_write 'alias gotour=$GOPATH/bin/gotour'
+ 
+# Next you'll need to add $GOPATH to your $HOME/.bash_profile ... using your favorite text editor edit $HOME/.bash_profile ...
+coderonin_write 'export GOPATH=$HOME/go'
+coderonin_write 'export PATH=$PATH:$GOPATH/bin'
+
+# this is kinda messy.. a single gopath for all your golang projects might not be optimal
+# check out autoenv for per-directory configuration
+
+function write_gotest() {
+    cat >$GOPATH/bin/gotest.go <<EOL
+package main
+import(
+    "fmt"
+)
+func main() {
+  fmt.Println("##################################################################")
+  fmt.Println("                         Hello World!")
+  fmt.Println("##################################################################")
+  fmt.Println("!")
+  fmt.Println("!")
+  fmt.Println("! if you're seeing this message it means your go installation was successful")
+  fmt.Println("!")
+  fmt.Println("! take a tour of go by issuing the command ")
+  fmt.Println("! $ gotour")
+}
+EOL
+}
+write_gotest
+
+# test go install
+go run $GOPATH/bin/gotest.go

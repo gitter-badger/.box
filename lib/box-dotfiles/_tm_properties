@@ -1,0 +1,4 @@
+#include all doftiles in textmate file browser
+include = "{$include,.*}"
+
+exclude = "{$exclude,.DS_Store,*.*~}"

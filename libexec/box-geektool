@@ -1,0 +1,30 @@
+#!/usr/bin/env bash
+# Usage: box geektool
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help geektool
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Geektool"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	# install cask
+	require_cask geektool
+
+	# figure out how to backup and restore my geektool config
+
+	# maybe?!
+	# copy org.tynsoe.geeklet.shell.plist to
+	# ~/Library/Preferences/org.tynsoe.geeklet.shell.plist
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'geektool not available fo linux'
+fi

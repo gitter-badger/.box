@@ -1,0 +1,112 @@
+#!/usr/bin/env bash
+# Usage: box zsh
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help zsh
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+# http://www.slideshare.net/jaguardesignstudio/why-zsh-is-cooler-than-your-shell-16194692
+
+bot "BOXBOT!"
+get_platform
+
+bot "ZShell"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_brew zsh
+  require_brew zsh-completions
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	sudo apt-get install zsh
+fi
+
+running "ensure that zsh exists in /etc/shells"
+if ! grep -q "/usr/local/bin/zsh" "/etc/shells" ; then
+  sudo echo "/usr/local/bin/zsh" >> "/etc/shells"
+fi
+ok
+
+running "backup your existing ~/.zshrc file:"
+cp "$HOME/.zshrc" "$HOME/.zshrc.bak"
+ok
+
+# implementing antigen for easier management of zsh plugins
+# https://joshldavis.com/2014/07/26/oh-my-zsh-is-a-disease-antigen-is-the-vaccine/
+git_clone_or_update git://github.com/zsh-users/antigen.git "$HOME/.antigen"
+
+function write_zshrc() {
+    cat >"$HOME/.zshrc" <<EOL
+source $HOME/.antigen/antigen.zsh
+
+# Antigen - zsh plugin manager
+# https://github.com/zsh-users/antigen
+# https://joshldavis.com/2014/07/26/oh-my-zsh-is-a-disease-antigen-is-the-vaccine/
+
+# Load the oh-my-zsh's library.
+antigen use oh-my-zsh
+
+# Bundles from the default repo (robbyrussell's oh-my-zsh).
+antigen bundle brew
+antigen bundle bundler
+antigen bundle colored-man-pages
+antigen bundle colorize
+antigen bundle command-not-found
+antigen bundle common-aliases
+antigen bundle gem
+antigen bundle git
+antigen bundle github
+antigen bundle heroku
+antigen bundle jira
+antigen bundle node
+antigen bundle npm
+antigen bundle osx
+antigen bundle pip
+antigen bundle pyenv
+antigen bundle pylint
+antigen bundle python
+antigen bundle rails
+antigen bundle redis-cli
+antigen bundle ruby
+antigen bundle rvm
+antigen bundle screen
+antigen bundle sublime
+antigen bundle textmate
+antigen bundle vagrant
+antigen bundle virtualenv
+# antigen bundle virtualenvwrapper
+
+
+# Syntax bundles from external sources
+antigen bundle kennethreitz/autoenv
+antigen bundle zsh-users/zsh-syntax-highlighting
+
+# Load the theme.
+antigen theme pygmalion
+
+# Tell antigen that you're done.
+antigen apply
+
+# Load RVM
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
+
+source $HOME/.coderonin
+EOL
+
+}
+running "creating defualt .zshrc"
+write_zshrc
+ok
+
+running "Set Zsh as your default shell:"
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  chsh -s /usr/local/bin/zsh > /dev/null #2>&1
+fi
+if [ "$NS_PLATFORM" == "linux" ]; then
+  chsh -s /usr/bin/zsh > /dev/null # 2>&1
+fi
+ok

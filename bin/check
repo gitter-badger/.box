@@ -1,0 +1,12 @@
+#!/usr/bin/env sh
+
+
+# check that shellcheck is installed -- warn and exit if not found
+# $ brew install shellcheck
+
+command -v shellcheck >/dev/null 2>&1 || { 
+  echo >&2 "I require shellcheck but it's not installed.  Aborting."; exit 1; 
+}
+
+file_list=$(find . -iname "*.sh")
+shellcheck $file_list

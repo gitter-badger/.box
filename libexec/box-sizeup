@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+# Usage: box sizeup
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help sizeup
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Sizeup Window Manager"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  # http://www.irradiatedsoftware.com/sizeup/
+  require_cask sizeup
+
+  running "Start SizeUp at login"
+  defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true;ok
+
+  running "Don't show the preferences window on next start"
+  defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false;ok
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'depending on your linux you already have a nice window manager..'
+fi
+

@@ -1,0 +1,73 @@
+#!/usr/bin/env bash
+# Usage: box python
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help python
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "Python"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	# install dependencies
+	# mysql?
+	# postgres?
+
+	require_brew python
+  require_brew python3
+  
+	pip install virtualenv
+	pip install virtualenvwrapper
+
+# add this to .coderonin dotfile
+  # # Python Virtual Enviroment Manager
+  # export WORKON_HOME=$HOME/.virtualenvs
+  # export PROJECT_HOME=$HOME/Development/python
+  # if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
+  #   source /usr/local/bin/virtualenvwrapper.sh
+  # fi
+
+  # create a generic python environment
+  # mkvirtualenv --python=`which python` python2
+  # workon python2
+  # pip install stuff
+  
+  # create a generic python3 environment
+  # mkvirtualenv --python=`which python3` python3
+  # workon python3
+  # pip install stuff
+
+	# try pycharm IDE
+  require_cask pycharm-ce
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	# Databases: You may not need all of these;
+	# none are explicit dependencies of other items in this script.
+	# SQLite and MySQL are pretty generally used for web development
+	sudo apt-get install -y python-mysqldb libmysqlclient-dev
+	sudo apt-get install -y libxml2-dev libxslt-dev  # needed for Python package 'lxml'
+	
+	sudo apt-get install -y python python-setuptools python-dev
+	sudo easy_install -U pip
+
+	# virtualenv, virtualenvwrapper stuff
+	sudo pip install virtualenv virtualenvwrapper
+	
+	# install oracle java jdk
+	sudo apt-get purge openjdk*
+	sudo add-apt-repository ppa:webupd8team/java
+	sudo apt-get update
+	sudo apt-get install oracle-java8-installer
+	sudo apt-get install oracle-java8-set-default
+
+	# install pycharm
+	wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+	sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -sc)-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+	sudo apt-get update
+	sudo apt-get install pycharm
+fi
+

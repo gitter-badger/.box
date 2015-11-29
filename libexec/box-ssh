@@ -1,0 +1,48 @@
+#!/usr/bin/env bash
+# Usage: box ssh
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help ssh
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "SSH Setup"
+
+running "checking for existing rsa key"
+if [ ! -f ~/.ssh/id_rsa ]; then
+  action "rsa key not present.. lets create one."
+  read -r -p "Enter your email and press [ENTER]: " email
+  
+  running "create rsa key"
+  ssh-keygen -t rsa -C "$email"; ok
+ 
+  # Then add your new key to the ssh-agent:
+  # start the ssh-agent in the background
+  running "start ssh-agent in the background"
+  eval "$(ssh-agent -s)" > /dev/null 2>&1; ok
+  
+  running "adding yout key to the ssh-agent"
+  ssh-add ~/.ssh/id_rsa > /dev/null 2>&1; ok
+  
+  running "copying ssh key to clipboard"
+  pbcopy < ~/.ssh/id_rsa.pub; ok
+  
+  echo "################################################################"
+  echo "Your shiny new ssh key has been copied to the clipboard.. "
+  echo "you should now log into github and paste your key."
+  echo "################################################################"
+  echo -n "Press [ENTER]: to continue"
+  read done
+
+  running "Test github ssh connection "
+  ssh -T git@github.com
+else
+  ok
+fi
+

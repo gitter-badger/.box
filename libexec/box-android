@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Usage: box android
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help android
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+# set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Android"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	# not needed if using android-studio
+	# require_brew android-sdk
+	require_brew apktool
+  require_cask java
+	require_cask android-studio
+	require_cask android-file-transfer
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'linux implementation for android not currently available'
+fi

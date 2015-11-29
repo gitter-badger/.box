@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+# Usage: box scala
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help scala
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Scala"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+	# install JDK
+	java -version
+
+	require_brew scala
+	# install scala build tool
+	require_brew sbt
+
+	# optional
+	echo 'SBT_OPTS="-XX:+CMSClassUnloadingEnabled -XX:PermSize=256M -XX:MaxPermSize=512M -Xmx2G"' >> ~/.sbtconfig
+
+	# eclipse scala-ide
+	require_cask 'scala-ide'
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	# install JDK
+	sudo apt-get install openjdk-7-jdk
+	
+	# install scala
+	sudo apt-get install scala
+
+	# install scala build tool
+	# install scala build tool
+	echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
+	sudo apt-get update
+	sudo apt-get install sbt
+	
+	# download and install eclipse scala-ide
+	# http://scala-ide.org/
+fi

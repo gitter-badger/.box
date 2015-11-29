@@ -1,0 +1,43 @@
+#!/usr/bin/env bash
+# Usage: box virtualbox
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help virtualbox
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Virtualbox & Vagrant"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  require_cask virtualbox
+  require_cask vagrant
+  # require_cask vagrant-manager
+
+  # running "download Windows XP with IE8 VM for testing"
+  # curl -O "https://az412801.vo.msecnd.net/vhd/IEKitV1_Final/VirtualBox/OSX/IE8_XP/IE8.XP.For.MacVirtualBox.ova"
+  # ok
+
+  # running "download Windows 7 with IE9 VM for testing"
+  # curl -O "https://az412801.vo.msecnd.net/vhd/IEKitV1_Final/VirtualBox/OSX/IE9_Win7/IE9.Win7.For.MacVirtualBox.part{1.sfx,2.rar,3.rar,4.rar,5.rar}"
+  # ok
+
+  # running "download Windows 8 with IE10 VM for testing"
+  # curl -O "https://az412801.vo.msecnd.net/vhd/IEKitV1_Final/VirtualBox/OSX/IE10_Win8/IE10.Win8.For.MacVirtualBox.part{1.sfx,2.rar,3.rar}"
+  # ok
+
+  # running "downlload windows 10 with IE11 for testing"
+  # curl -O -L "https://www.modern.ie/vmdownload?platform=mac&virtPlatform=virtualbox&browserOS=IE11-Win10&parts=5&filename=VMBuild_20141027/VirtualBox/IE11/Mac/IE11.Win10.For.MacVirtualBox.part{1.sfx,2.rar,3.rar,4.rar,5.rar}"
+  # ok
+
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+  sudo apt-get install virtualbox
+  sudo apt-get install vagrant
+fi

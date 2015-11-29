@@ -1,0 +1,49 @@
+#!/usr/bin/env bash
+# Usage: box homebrew
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help homebrew
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+bot "BOXBOT!"
+get_platform
+
+bot "Homebrew"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  running "checking homebrew install"
+  output=$(which brew) > /dev/null 2>&1 
+  if [[ $? != 0 ]]; then
+  	action "installing homebrew"
+    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    if [[ $? != 0 ]]; then
+      	error "unable to install homebrew, script $0 abort!"
+      	exit -1
+  	fi
+  fi
+  ok
+
+  # Make sure we're using the latest Homebrew
+  running "ensure homebrew is up to date"
+  brew update > /dev/null 2>&1
+  ok
+
+  running "checking brew-cask install"
+  output=$(brew tap | grep cask)
+  if [[ $? != 0 ]]; then
+  	action "installing brew-cask"
+  	require_brew 'caskroom/cask/brew-cask'
+  	coderonin_write 'export HOMEBREW_CASK_OPTS="--appdir=/Applications"'
+  	coderonin_write 'export PATH=/usr/local/sbin:/usr/local/bin:$PATH'
+  fi
+  ok
+  
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+	die 'homebrew not available for linux'
+fi
