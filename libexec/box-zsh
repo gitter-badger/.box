@@ -22,7 +22,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install zsh
+	sudo apt-get install -y zsh
 fi
 
 set +e # allow shell to ask for password

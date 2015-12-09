@@ -24,7 +24,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install mysql-server
+	sudo apt-get install -y mysql-server
 	sudo mysql_install_db
 	sudo /usr/bin/mysql_secure_installation
   

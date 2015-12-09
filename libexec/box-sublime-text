@@ -46,7 +46,7 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   sudo add-apt-repository ppa:webupd8team/sublime-text-2
   sudo apt-get update
-  sudo apt-get install sublime-text
+  sudo apt-get install -y sublime-text
 
   running "set out custom preferences for sublime"
   cp "$_BOX_ROOT/lib/box-sublime-text/Preferences.sublime-settings" "$HOME/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"

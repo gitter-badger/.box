@@ -20,7 +20,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install golang 
+	sudo apt-get install -y golang
 fi
 
 # In just a few minutes, go should be all installed.

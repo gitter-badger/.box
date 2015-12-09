@@ -22,11 +22,11 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install curl
-	sudo apt-get install openssl
-	sudo apt-get install graphviz
-	sudo apt-get install imagemagick
-	sudo apt-get install qt-sdk
+	sudo apt-get install -y curl
+	sudo apt-get install -y openssl
+	sudo apt-get install -y graphviz
+	sudo apt-get install -y imagemagick
+	sudo apt-get install -y qt-sdk
 fi
 
 echo -e "\n=> Check for RVM Installation"

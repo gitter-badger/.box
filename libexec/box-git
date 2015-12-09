@@ -21,7 +21,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install git-flow
+	sudo apt-get install -y git-flow
   # gitignore boilerplate manager
   curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
 fi

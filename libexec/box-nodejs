@@ -58,7 +58,7 @@ fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
   #Installing the pre-requisites:
-  sudo apt-get install python-software-properties python g++ make
+  sudo apt-get install -y python-software-properties python g++ make
   
   # Add the PPA Repository, which is recommended by Joyent (the maintainers of Node.js):
   sudo add-apt-repository ppa:chris-lea/node.js
@@ -67,8 +67,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get update
   
   # Install Node.js:
-  sudo apt-get install nodejs
-  sudo apt-get install npm
+  sudo apt-get install -y nodejs npm
 
   sudo npm install sails -g
   # The -g flag ensures that sails is installed globally and can be used as a command-line tool.

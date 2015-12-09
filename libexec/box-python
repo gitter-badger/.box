@@ -61,13 +61,13 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	sudo apt-get purge openjdk*
 	sudo add-apt-repository ppa:webupd8team/java
 	sudo apt-get update
-	sudo apt-get install oracle-java8-installer
-	sudo apt-get install oracle-java8-set-default
+	sudo apt-get install -y oracle-java8-installer
+	sudo apt-get install -y oracle-java8-set-default
 
 	# install pycharm
 	wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
 	sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -sc)-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
 	sudo apt-get update
-	sudo apt-get install pycharm
+	sudo apt-get install -y pycharm
 fi
 

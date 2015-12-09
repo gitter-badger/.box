@@ -29,6 +29,5 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install postgresql postgresql-contrib
-  sudo apt-get install pgadmin3
+	sudo apt-get install postgresql postgresql-contrib pgadmin3
 fi
