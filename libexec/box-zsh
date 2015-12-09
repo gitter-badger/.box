@@ -25,6 +25,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	sudo apt-get install zsh
 fi
 
+set +e # allow shell to ask for password
 running "ensure that zsh exists in /etc/shells"
 if ! grep -q "/usr/local/bin/zsh" "/etc/shells" ; then
   sudo echo "/usr/local/bin/zsh" >> "/etc/shells"
@@ -34,6 +35,7 @@ ok
 running "backup your existing ~/.zshrc file:"
 cp "$HOME/.zshrc" "$HOME/.zshrc.bak"
 ok
+set -e
 
 # implementing antigen for easier management of zsh plugins
 # https://joshldavis.com/2014/07/26/oh-my-zsh-is-a-disease-antigen-is-the-vaccine/
