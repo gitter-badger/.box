@@ -81,7 +81,7 @@ _box_wrapper() {
   fi
 
   case "\$command" in
-  ${commands[*]})
+  \${commands[*]})
     eval \`box "sh-\$command" "\$@"\`;;
   *)
     command box "\$command" "\$@";;
