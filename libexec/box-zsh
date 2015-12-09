@@ -91,9 +91,6 @@ antigen theme pygmalion
 # Tell antigen that you're done.
 antigen apply
 
-# Load RVM
-[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
-
 source $HOME/.coderonin
 EOL
 
