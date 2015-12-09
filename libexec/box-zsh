@@ -37,6 +37,10 @@ cp "$HOME/.zshrc" "$HOME/.zshrc.bak"
 ok
 set -e
 
+running "ensure .coderonin file exists"
+touch "$HOME/.coderonin"
+ok
+
 # implementing antigen for easier management of zsh plugins
 # https://joshldavis.com/2014/07/26/oh-my-zsh-is-a-disease-antigen-is-the-vaccine/
 git_clone_or_update git://github.com/zsh-users/antigen.git "$HOME/.antigen"
