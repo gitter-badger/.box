@@ -13,7 +13,7 @@
 source "$_BOX_ROOT/lib/bash_functions.sh"
 # set -e
 
-function header(){
+function banner(){
 info '
 __________.___  .___                 __         .__  .__                
 \______   \   | |   | ____   _______/  |______  |  | |  |   ___________ 
@@ -24,18 +24,16 @@ __________.___  .___                 __         .__  .__
 '
 }
 
-header
-
 # Set $1 as image path
 DISTRO="$1"
 echo $DISTRO
 
 # Check image path is set else exit
 if [ -z "$DISTRO" ]; then
-    warn line
-    warn "ERR: No image path supplied"
-    warn line
-    exit 0
+    line
+    error "ERROR: No image path supplied"
+    line
+    die
 fi
 
 # Selected disk
@@ -83,20 +81,24 @@ function promptDisk() {
 
     # Test if valid disk selected
     if [ -z "$_udisk" ]; then
-        warn "\n ======= Invalid selection ======= \n"
-        promptDisk
+      clear
+      error " ======= Invalid selection ======= "
+      banner
+      promptDisk
     fi
 }
 
 # Run prompt
+clear
+banner
 promptDisk
 
-clear
-header
 
 # ===========================================================
 # Past this point a valid disk has been selected, so proceed.
 # ===========================================================
+clear
+banner
 
 # Format disk name to raw format
 _rawdisk=$( echo $_udisk | awk 'sub("..$", "")' | sed 's/disk/rdisk/')
@@ -113,4 +115,4 @@ pv ${DISTRO} | sudo dd bs=1m of=${_rawdisk}
 action "Ejecting Disk"
 diskutil eject ${_rawdisk}
 
-info "All Done!"
+die "All Done!"
