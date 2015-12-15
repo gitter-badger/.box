@@ -32,7 +32,7 @@ if [ -s "$command_file" ]
 #
 #    Show off an example indented
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "\$_BOX_ROOT/lib/bash_functions.sh"
 set -e
 
 EOL
