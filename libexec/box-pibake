@@ -10,29 +10,11 @@
 #
 # 3. Wait for disk to finish writing. You can check the write progress with `Ctrl+T`.
 
-source "/Users/coderonin/.box/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/bash_functions.sh"
 # set -e
 
-# Raspberry PI Install Script
-# Author: Ray Viljoen
-
-_piline="------------------------------------------------------------------------------------"
-
-# Display colorized information output
-function _info() {
-    COLOR='\033[00;32m' # green
-    RESET='\033[00;00m' # white
-    echo -e "${COLOR}${@}${RESET}"
-}
- 
-# Display colorized warning output
-function _warn() {
-    COLOR='\033[00;31m' # red
-    RESET='\033[00;00m' # white
-    echo -e "${COLOR}${@}${RESET}"
-}
-
-_info '
+function header(){
+info '
 __________.___  .___                 __         .__  .__                
 \______   \   | |   | ____   _______/  |______  |  | |  |   ___________ 
  |     ___/   | |   |/    \ /  ___/\   __\__  \ |  | |  | _/ __ \_  __ \
@@ -40,16 +22,19 @@ __________.___  .___                 __         .__  .__
  |____|   |___| |___|___|  /____  > |__| (____  /____/____/\___  >__|   
                          \/     \/            \/               \/       
 '
+}
 
+header
 
 # Set $1 as image path
 DISTRO="$1"
 echo $DISTRO
+
 # Check image path is set else exit
 if [ -z "$DISTRO" ]; then
-    _warn $_piline
-    _warn "ERR: No image path supplied"
-    _warn $_piline
+    warn line
+    warn "ERR: No image path supplied"
+    warn line
     exit 0
 fi
 
@@ -64,23 +49,22 @@ function promptDisk() {
     # Counter
     i=0
 
-    echo $_piline
+    line
 
     # Loop over df -lh
-    while read line; do
+    while read disk; do
         # Print with local mount only and add counter to select disk
         if [ "$i" -gt 0 ]; then
-            echo "$i) $line"
+            echo "$i) $disk"
             # Asign first work (path) to array with corresponding counter
-            _mount[i]=$( echo $line | awk '{print $1;}')
+            _mount[i]=$( echo $disk | awk '{print $1;}')
         else
-            _info "   $line"
-            echo $_piline
+            info "   $disk"
         fi
         # Increment counter
         ((i++))
     done <<< "$(df -h)"
-    echo -e "$_piline\n"
+    line
 
     _opts=''
     for i in "${!_mount[@]}"; do
@@ -89,8 +73,8 @@ function promptDisk() {
 
     # Ask user to select mounted disk
     echo "Select the disk to use by enetering the disk number."
-    _warn "*** MAKE SURE YOU SELECT THE CORRECT DISK ***"
-    _warn "*** Refer to the Readme if uncertain ***"
+    warn "*** MAKE SURE YOU SELECT THE CORRECT DISK ***"
+    warn "*** Refer to the Readme if uncertain ***"
     echo -n -e "\nUse disk [ $_opts ] #"
     read ans
 
@@ -99,13 +83,16 @@ function promptDisk() {
 
     # Test if valid disk selected
     if [ -z "$_udisk" ]; then
-        _warn "\n ======= Invalid selection ======= \n"
+        warn "\n ======= Invalid selection ======= \n"
         promptDisk
     fi
 }
 
 # Run prompt
 promptDisk
+
+clear
+header
 
 # ===========================================================
 # Past this point a valid disk has been selected, so proceed.
@@ -115,15 +102,15 @@ promptDisk
 _rawdisk=$( echo $_udisk | awk 'sub("..$", "")' | sed 's/disk/rdisk/')
 
 # Unmount Disk
-echo "Unmounting Disk"
+action "Unmounting Disk"
 diskutil unmount $_udisk
+ok
 
-echo "Writing image"
-echo "Ctrl+T to see progress.."
-sudo dd bs=1m if=${DISTRO} of=${_rawdisk}
+action "Writing image"
+pv ${DISTRO} | sudo dd bs=1m of=${_rawdisk}
 
 # Eject disk
-echo "Ejecting Disk"
+action "Ejecting Disk"
 diskutil eject ${_rawdisk}
 
-_info "All Done!"
+info "All Done!"

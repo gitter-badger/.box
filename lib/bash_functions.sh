@@ -23,9 +23,13 @@ function running() { echo -en "$COL_YELLOW ⇒ $COL_RESET $1: "; }
 
 function action() { echo -e "\n$COL_YELLOW[action]:$COL_RESET\n ⇒ $1..."; }
 
-function warn() { echo -e "$COL_YELLOW[warning]$COL_RESET $1"; }
+function line() { echo -e "------------------------------------------------------------------------------------"; }
 
-function error() { echo -e "$COL_RED[error]$COL_RESET $1"; }
+function info() { echo -e "$COL_GREEN $1 $COL_RESET"; }
+
+function warn() { echo -e "$COL_YELLOW $1 $COL_RESET"; }
+
+function error() { echo -e "$COL_RED $1 $COL_RESET "; }
 
 function die() { echo "$@" 1>&2 ; exit 1; }
 
