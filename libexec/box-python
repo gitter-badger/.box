@@ -25,50 +25,61 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   action "add virtualenv init"
   coderonin_write 'eval "$(pyenv virtualenv-init -)"'
 
-  pyenv install 2.7.11
-  pyenv install 3.5.1
-  pyenv rehash
-
 	# try pycharm IDE
   require_cask pycharm-ce
-
-  # # list virtualenvs
-  # pyenv virtualenvs
-
-  # # create a new virtualenv
-  # pyenv virtualenv $ENV_NAME
-
-  # # destroy a  virtualenv
-  # pyenv uninstall $ENV_NAME
-
-  # # create a directory switch for a virtualenv
-  # python local $ENV_NAME
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	# Databases: You may not need all of these;
-	# none are explicit dependencies of other items in this script.
-	# SQLite and MySQL are pretty generally used for web development
-	sudo apt-get install -y python-mysqldb libmysqlclient-dev
-	sudo apt-get install -y libxml2-dev libxslt-dev  # needed for Python package 'lxml'
-	
-	sudo apt-get install -y python python-setuptools python-dev
-	sudo easy_install -U pip
+  # Databases: You may not need all of these;
+  # none are explicit dependencies of other items in this script.
+  # SQLite and MySQL are pretty generally used for web development
+  sudo apt-get install -y python-mysqldb libmysqlclient-dev
+  sudo apt-get install -y libxml2-dev libxslt-dev  # needed for Python package 'lxml'
 
-	# virtualenv, virtualenvwrapper stuff
-	sudo pip install virtualenv virtualenvwrapper
-	
-	# install oracle java jdk
-	sudo apt-get purge openjdk*
-	sudo add-apt-repository ppa:webupd8team/java
-	sudo apt-get update
-	sudo apt-get install -y oracle-java8-installer
-	sudo apt-get install -y oracle-java8-set-default
+  sudo apt-get install -y python python-setuptools python-dev
+  sudo easy_install -U pip
 
-	# install pycharm
-	wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
-	sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -sc)-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
-	sudo apt-get update
-	sudo apt-get install -y pycharm
+  action "Install pyenv"
+  git_clone_or_update https://github.com/yyuu/pyenv.git ~/.pyenv
+
+  action "add pyenv init"
+  coderonin_write 'export PYENV_ROOT="$HOME/.pyenv"'
+  coderonin_write 'export PATH="$PYENV_ROOT/bin:$PATH"'
+  coderonin_write 'eval "$(pyenv init -)"'
+
+  action "check out virtualenv plugin"
+  git_clone_or_update https://github.com/yyuu/pyenv-virtualenv.git ~/.pyenv/plugins/pyenv-virtualenv
+
+  action "add virtualenv init"
+  coderonin_write 'eval "$(pyenv virtualenv-init -)"'
+
+  action "install oracle java jdk"
+  sudo apt-get purge openjdk*
+  sudo add-apt-repository ppa:webupd8team/java
+  sudo apt-get update
+  sudo apt-get install -y oracle-java8-installer
+  sudo apt-get install -y oracle-java8-set-default
+
+  action "install pycharm-ce"
+  wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
+  sudo sh -c 'echo "deb http://archive.getdeb.net/ubuntu $(lsb_release -sc)-getdeb apps" >> /etc/apt/sources.list.d/getdeb.list'
+  sudo apt-get update
+  sudo apt-get install -y pycharm
 fi
 
+pyenv install 2.7.11
+pyenv install 3.5.1
+pyenv rehash
+
+
+# # list virtualenvs
+# pyenv virtualenvs
+
+# # create a new virtualenv
+# pyenv virtualenv $ENV_NAME
+
+# # destroy a  virtualenv
+# pyenv uninstall $ENV_NAME
+
+# # create a directory switch for a virtualenv
+# python local $ENV_NAME
