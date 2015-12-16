@@ -83,8 +83,7 @@ antigen bundle screen
 antigen bundle sublime
 antigen bundle textmate
 antigen bundle vagrant
-antigen bundle virtualenv
-# antigen bundle virtualenvwrapper
+antigen bundle pyenv
 
 
 # Syntax bundles from external sources
