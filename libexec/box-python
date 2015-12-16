@@ -7,41 +7,42 @@
 #    Show off an example indented
 #
 source "$_BOX_ROOT/lib/bash_functions.sh"
-set -e
+# set -e
 
 bot "Python"
+get_platform
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	# install dependencies
-	# mysql?
-	# postgres?
+  action "Install pyenv"
+  require_brew pyenv
 
-	require_brew python
-  require_brew python3
-  
-	pip install virtualenv
-	pip install virtualenvwrapper
+  action "add pyenv init"
+  coderonin_write 'eval "$(pyenv init -)"'
 
-# add this to .coderonin dotfile
-  # # Python Virtual Enviroment Manager
-  # export WORKON_HOME=$HOME/.virtualenvs
-  # export PROJECT_HOME=$HOME/Development/python
-  # if [ -f /usr/local/bin/virtualenvwrapper.sh ]; then
-  #   source /usr/local/bin/virtualenvwrapper.sh
-  # fi
+  action "check out virtualenv plugin"
+  require_brew pyenv-virtualenv
 
-  # create a generic python environment
-  # mkvirtualenv --python=`which python` python2
-  # workon python2
-  # pip install stuff
-  
-  # create a generic python3 environment
-  # mkvirtualenv --python=`which python3` python3
-  # workon python3
-  # pip install stuff
+  action "add virtualenv init"
+  coderonin_write 'eval "$(pyenv virtualenv-init -)"'
+
+  pyenv install 2.7.11
+  pyenv install 3.5.1
+  pyenv rehash
 
 	# try pycharm IDE
   require_cask pycharm-ce
+
+  # # list virtualenvs
+  # pyenv virtualenvs
+
+  # # create a new virtualenv
+  # pyenv virtualenv $ENV_NAME
+
+  # # destroy a  virtualenv
+  # pyenv uninstall $ENV_NAME
+
+  # # create a directory switch for a virtualenv
+  # python local $ENV_NAME
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
