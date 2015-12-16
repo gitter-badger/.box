@@ -5,6 +5,9 @@
 # @author Adam Eivy
 ###
 
+CODERONIN_DOTFILE="$HOME/.coderonin"
+touch "$CODERONIN_DOTFILE"
+
 # Colors
 ESC_SEQ="\x1b["
 COL_RESET=$ESC_SEQ"39;49;00m"
@@ -122,16 +125,6 @@ function git_clone_or_update() {
   fi
 }
 
-function profile_write {
-  # try to ensure we don't create duplicate entries in the .coderonin file
-  touch $2
-  action "ensure that $2 exists in $1"
-  if ! grep -q "$1" "$2" ; then
-    echo "$1" >> "$2"
-  fi
-  ok
-}
-
 function get_platform() {
   if [ "$(uname -s)" == "Darwin" ]; then
     # Do something for OSX
@@ -151,28 +144,20 @@ function get_platform() {
   ok
 }
 
-#  these should happen somewhere else
-# # make a file to hold our customizations so as to not overwrite the users customized profile
-# coderonin_dotfile="$HOME/.coderonin"
-# touch "$coderonin_dotfile"
-#
-# #add line to .profile to source our coderonin_dotfile
-# profile_write "source $coderonin_dotfile" "$HOME/.profile"
-# #add line to .bash_profile to source our coderonin_dotfile
-# profile_write "source $coderonin_dotfile" "$HOME/.bash_profile"
-# #add line to .zshrc to source our coderonin_dotfile
-# profile_write "source $coderonin_dotfile" "$HOME/.zshrc"
-
-function coderonin_write {
+function profile_write {
   # try to ensure we don't create duplicate entries in the .coderonin file
-  action "ensure that $1 exists in $coderonin_dotfile"
-  if ! grep -q "$1" "$coderonin_dotfile" ; then
-    echo "$1" >> "$coderonin_dotfile"
-    source "$coderonin_dotfile"
+  touch $2
+  action "ensure that $2 exists in $1"
+  if ! grep -q "$1" "$2" ; then
+    echo "$1" >> "$2"
   fi
   ok
 }
 
+function coderonin_write {
+  profile_write $1 $CODERONIN_DOTFILE
+  source "$CODERONIN_DOTFILE"
+}
 
 
 

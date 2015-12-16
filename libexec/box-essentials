@@ -15,6 +15,13 @@ get_platform
 
 bot "System Essentials"
 
+# add line to .profile to source our CODERONIN_DOTFILE
+profile_write "source $CODERONIN_DOTFILE" "$HOME/.profile"
+# add line to .bash_profile to source our CODERONIN_DOTFILE
+profile_write "source $CODERONIN_DOTFILE" "$HOME/.bash_profile"
+# add line to .zshrc to source our CODERONIN_DOTFILE
+profile_write "source $CODERONIN_DOTFILE" "$HOME/.zshrc"
+
 if [ "$NS_PLATFORM" == "darwin" ]; then
   source "$_BOX_ROOT/lib/box-essentials/_darwin.sh"
 fi
