@@ -9,13 +9,17 @@
 source "$_BOX_ROOT/lib/bash_functions.sh"
 set -e
 
-command_file="$HOME/.box/libexec/box-$1"
-
 bot "BOXBOT!"
 get_platform
 
 bot "New Box Command"
 
+if [[ $# -eq 0 ]] ; then
+  error 'please provide a name for your new command'
+  die 
+fi
+
+command_file="$HOME/.box/libexec/box-$1"
 if [ -s "$command_file" ]
   then 
     die "COMMAND EXISTS"
