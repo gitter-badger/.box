@@ -15,14 +15,11 @@ get_platform
 bot "Capture the flag"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	die 'implementation unfinished'
-  require_brew wireshark
-
   require_cask xquartz
   require_cask wireshark
 
-	# # Investigate these tools more thouroughly before implementing
-	# # Install some CTF tools; see https://github.com/ctfs/write-ups
+  # Investigate these tools more thouroughly before implementing
+  # Install some CTF tools; see https://github.com/ctfs/write-ups
   require_brew bfg
   require_brew binwalk
   require_brew dex2jar
@@ -37,13 +34,12 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew pngcheck
   require_brew sqlmap
   require_brew tcpflow
-  # require_brew tcpreplay
-  # unable to find libpcap
+  require_brew tcpreplay
+  require_brew libpcap
   require_brew tcptrace
   require_brew ucspi-tcp # `tcpserver` et al.
-  # require_brew xpdf
+  require_brew homebrew/x11/xpdf
   require_brew xz
-	
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
