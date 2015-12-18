@@ -15,14 +15,9 @@ get_platform
 bot "Geektool"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	# install cask
-	require_cask geektool
+  require_cask geektool
 
-	# figure out how to backup and restore my geektool config
-
-	# maybe?!
-	# copy org.tynsoe.geeklet.shell.plist to
-	# ~/Library/Preferences/org.tynsoe.geeklet.shell.plist
+  $_BOX_ROOT/lib/box-geektool/install.sh
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
