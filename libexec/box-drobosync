@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+# Usage: box drobosync
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help drobosync
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/bash_functions.sh"
+set -e
+
+action 'sync Drobo with SeagateBackup'
+rsync -avzh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/
+
+action 'sync Drobo with Elements2TB'
+rsync -avzh /Volumes/Drobo/Archive/ /Volumes/Elements2TB/Drobo/
