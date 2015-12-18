@@ -1,18 +1,7 @@
 #!/usr/bin/env bash
-# Usage: box sublime-text
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help sublime-text
-# You can have multiple lines even!
-#
-#    Show off an example indented
-#
 source "$_BOX_ROOT/lib/bash_functions.sh"
-set -e
 
-bot "BOXBOT!"
-get_platform
-
-bot "Sublime Text"
+bot "Install Sublime Text"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask sublime-text
