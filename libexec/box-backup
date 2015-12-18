@@ -9,6 +9,10 @@
 source "$_BOX_ROOT/lib/bash_functions.sh"
 set -e
 
+
+action 'Kick off a Time Machine Backup'
+tmutil startbackup -a
+
 action 'sync Drobo with SeagateBackup'
 rsync -avzh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/
 
