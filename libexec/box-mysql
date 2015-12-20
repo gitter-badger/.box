@@ -6,7 +6,7 @@
 #
 #    Show off an example indented
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 set -e
 
 bot "MySQL"

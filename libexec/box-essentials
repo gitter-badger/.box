@@ -7,7 +7,7 @@
 #   Put desired customizations there.
 #   See .laptop.local.example for example usage
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 set -e
 
 bot "BOXBOT!"

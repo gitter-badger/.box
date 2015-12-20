@@ -10,7 +10,7 @@
 #
 # 3. Wait for disk to finish writing. You can check the write progress with `Ctrl+T`.
 
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 # set -e
 
 function banner(){

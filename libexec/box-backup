@@ -6,12 +6,13 @@
 #
 #    Show off an example indented
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
-set -e
-
+source "$_BOX_ROOT/lib/box_functions"
 
 action 'Kick off a Time Machine Backup'
 tmutil startbackup -a
+
+action 'sync OTG128x01 to Drobo'
+rsync -avzh /Volumes/OTG128x01/ /Volumes/Drobo/Archive/OTG128x01/
 
 action 'sync Drobo with SeagateBackup'
 rsync -avzh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/

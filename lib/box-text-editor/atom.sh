@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 
 bot "Install Atom"
 

@@ -6,7 +6,7 @@
 #
 #    Show off an example indented
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 set -e
 
 bot "BOXBOT!"
@@ -27,19 +27,7 @@ if [ -s "$command_file" ]
     action "create $command_file"
     touch $command_file
     chmod a+x $command_file
-    cat >$command_file <<EOL
-#!/usr/bin/env bash
-# Usage: box $1
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help $1
-# You can have multiple lines even!
-#
-#    Show off an example indented
-#
-source "\$_BOX_ROOT/lib/bash_functions.sh"
-set -e
-
-EOL
+    echo "$TEMPLATE" > $command_file
     ok
 fi
 

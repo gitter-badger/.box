@@ -22,7 +22,7 @@ abs_dirname() {
 libexec_path="$(abs_dirname "$0")"
 export _BOX_ROOT="$(abs_dirname "$libexec_path")"
 export PATH="${libexec_path}:$PATH"
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 
 command="$1"
 

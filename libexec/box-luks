@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# Usage: box luks
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help luks
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/box_functions"
+set -e
+
+
+
+# To add a new password, use luksAddKey:
+sudo cryptsetup luksAddKey /dev/sda5
+
+# To remove an existing password, use luksRemoveKey:
+sudo cryptsetup luksRemoveKey /dev/sda5

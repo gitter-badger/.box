@@ -43,7 +43,7 @@ Customize in `~/.laptop.local`
 
 ##TODO
 
-* update antigen to https://github.com/Tarrasch/antigen-hs for faster loding of zsh env
+* maybe update antigen to https://github.com/Tarrasch/antigen-hs for faster loding of zsh env
 
 * add switches to packages
   - maybe i don't want to install the UI app for MySQL.. etc..

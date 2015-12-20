@@ -6,7 +6,7 @@
 #
 #    Show off an example indented
 #
-source "$_BOX_ROOT/lib/bash_functions.sh"
+source "$_BOX_ROOT/lib/box_functions"
 set -e
 
 bot "BOXBOT!"
@@ -20,7 +20,6 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   boot2docker start
   $(boot2docker shellinit)
   require_brew docker-compose
-
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
