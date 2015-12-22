@@ -5,7 +5,7 @@
 #  jenv help.. see http://www.jenv.be
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
+# set -e
 
 bot "BOXBOT!"
 get_platform
