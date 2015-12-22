@@ -4,7 +4,7 @@
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
+# set -e
 
 bot "BOXBOT!"
 get_platform
@@ -28,7 +28,12 @@ if [ ! -f ~/.ssh/id_rsa ]; then
   ssh-add ~/.ssh/id_rsa > /dev/null 2>&1; ok
 
   running "copying ssh key to clipboard"
-  pbcopy < ~/.ssh/id_rsa.pub; ok
+  if [ "$NS_PLATFORM" == "darwin" ]; then
+    pbcopy < ~/.ssh/id_rsa.pub; ok 
+  fi
+  if [ "$NS_PLATFORM" == "linux" ]; then
+    xclip < ~/.ssh/id_rsa.pub; ok 
+  fi
 
   echo "################################################################"
   echo "Your shiny new ssh key has been copied to the clipboard.. "

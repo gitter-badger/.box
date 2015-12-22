@@ -35,6 +35,7 @@ sudo $pm -y install \
   libcurl4-openssl-dev \
   libtool \
   openssl \
+  xclip \
   zlib1g \
   zlib1g-dev \
 	wget
