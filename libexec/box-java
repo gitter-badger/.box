@@ -1,7 +1,8 @@
 #!/usr/bin/env bash
 # Usage: box java
-# Summary: install jenv, java, and eclipse-ide
+# Summary: install jenv for java version management
 # Help:
+#  jenv help.. see http://www.jenv.be
 #
 set -e
 
@@ -45,4 +46,48 @@ action "restarting shell"
 exec $SHELL -l
 ok
 
+action "emabling jenv plugins"
+jenv enable-plugin maven ant
+jenv enable-plugin maven golo
+jenv enable-plugin maven gradle
+jenv enable-plugin maven grails
+jenv enable-plugin maven groovy
+jenv enable-plugin maven lein
+jenv enable-plugin maven maven
+jenv enable-plugin maven sbt
+jenv enable-plugin maven scala
+jenv enable-plugin maven vlt
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+# action "finding current java versions"
+# read /Library/Java/JavaVirtualMachines/
+# for each entry
+# jenv add /Library/Java/JavaVirtualMachines/{entry}/Contents/Home
+fi
+
+if [ "$NS_PLATFORM" == "linux" ]; then
+
+fi
+
 exit
+
+# Configure JVM in jenv
+# $ jenv add /path/to/java/home
+
+# Configure which JVM to use (globally, by directory or for the current shell instance)
+# $ jenv (global|local|shell) oracle-1.7.0
+
+# Check that works
+# $ java -version
+
+# Add JVM Options (globally, by directory or for the current shell instance)
+# $ jenv global|local|shell)-options "-Xmx512m"
+
+# Check that works
+# $ jenv info java
+
+# Sets a local application-specific Java version by writing the version name to
+# a .java-version file in the current directory.
+# This version overrides the global version, and can be overridden itself by
+# setting the JENV_VERSION environment variable or with the jenv shell command.
+# $ jenv local oracle-1.7
