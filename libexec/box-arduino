@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box arduino
 # Summary: install arduino development environment
-# Help: 
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -12,10 +12,11 @@ get_platform
 bot "Arduino"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	require_brew avrdude
 
 	#install arduino 1.6.3
+	action "Install Arduino IDE"
 	require_cask arduino
+	ok
 
 	# install FTDI driver
 	# http://www.ftdichip.com/Drivers/D2XX/MacOSX/D2XX1.2.2.dmg
@@ -28,7 +29,11 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'implementation unfinished'
+
+	action "Install Arduino IDE"
+	sudo apt-get install arduino arduino-core
+	ok
+
 fi
 
 exit
