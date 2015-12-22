@@ -42,3 +42,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	# download and install eclipse scala-ide
 	# http://scala-ide.org/
 fi
+
+exit

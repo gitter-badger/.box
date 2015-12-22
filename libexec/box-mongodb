@@ -34,3 +34,5 @@ rvm all do gem install genghisapp
 
 # automatically install genghisapp ad a global gem in all future ruby installs
 profile_write "genghisapp" "$rvm_path/gemsets/global.gems"
+
+exit

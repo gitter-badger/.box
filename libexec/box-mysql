@@ -29,3 +29,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   # phpmyadmin ?
   # MySql Workbench ?
 fi
+
+exit

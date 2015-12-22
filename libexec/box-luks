@@ -8,8 +8,10 @@ set -e
 
 
 
-# To add a new password, use luksAddKey:
-sudo cryptsetup luksAddKey /dev/sda5
+# # To add a new password, use luksAddKey:
+# sudo cryptsetup luksAddKey /dev/sda5
+#
+# # To remove an existing password, use luksRemoveKey:
+# sudo cryptsetup luksRemoveKey /dev/sda5
 
-# To remove an existing password, use luksRemoveKey:
-sudo cryptsetup luksRemoveKey /dev/sda5
+exit

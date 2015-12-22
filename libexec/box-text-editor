@@ -23,4 +23,4 @@ if [ $editor = '2' ] ; then
   $_BOX_ROOT/lib/box-text-editor/sublime.sh
 fi
 
-die
+exit

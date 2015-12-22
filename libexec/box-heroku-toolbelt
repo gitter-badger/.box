@@ -18,3 +18,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	wget -qO- https://toolbelt.heroku.com/install-ubuntu.sh | sh
 fi
+
+exit

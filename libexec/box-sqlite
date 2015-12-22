@@ -21,3 +21,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	sudo apt-get install -y sqlite
 fi
+
+exit

@@ -25,3 +25,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'depending on your linux you already have a nice window manager..'
 fi
+
+exit

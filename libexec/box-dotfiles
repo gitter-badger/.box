@@ -13,8 +13,6 @@ bot "Dotfiles"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   cp $_BOX_ROOT/lib/box-dotfiles/_aliases_darwin $HOME/.aliases
-  # this doesn't really belong here
-	cp $_BOX_ROOT/lib/box-dotfiles/_tm_properties $HOME/.tm_properties
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
@@ -22,3 +20,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 fi
 
 coderonin_write "source $HOME/.aliases"
+
+exit

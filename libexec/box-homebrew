@@ -44,3 +44,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'homebrew not available for linux'
 fi
+
+exit

@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+# a config file for TextMate
+cp $_BOX_ROOT/lib/box-defaults/config/_tm_properties $HOME/.tm_properties
+
 ###############################################################################
 bot "Configuring General System UI/UX..."
 ###############################################################################

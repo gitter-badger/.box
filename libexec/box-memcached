@@ -25,3 +25,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   die 'implementation unfinished'
 fi
+
+exit

@@ -85,3 +85,5 @@ fi
 #
 # gnuradio-companion
 # osmocom_fft -a hackrf
+
+exit

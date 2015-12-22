@@ -50,12 +50,6 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   action "add virtualenv init"
   coderonin_write 'eval "$(pyenv virtualenv-init -)"'
 
-  action "install oracle java jdk"
-  sudo apt-get purge openjdk*
-  sudo add-apt-repository ppa:webupd8team/java
-  sudo apt-get update
-  sudo apt-get install -y oracle-java8-installer
-  sudo apt-get install -y oracle-java8-set-default
 
   action "install pycharm-ce"
   wget -q -O - http://archive.getdeb.net/getdeb-archive.key | sudo apt-key add -
@@ -80,3 +74,5 @@ pyenv rehash
 
 # # create a directory switch for a virtualenv
 # python local $ENV_NAME
+
+exit

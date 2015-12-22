@@ -23,3 +23,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'linux implementation for android not currently available'
 fi
+
+exit

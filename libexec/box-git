@@ -42,3 +42,5 @@ echo -n "Enter your email and press [ENTER]: "
 read email
 git config --global user.email "$email"
 echo "==> done..."
+
+exit

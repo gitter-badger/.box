@@ -22,3 +22,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'not implemented'
 fi
+
+exit

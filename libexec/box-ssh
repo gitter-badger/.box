@@ -47,3 +47,5 @@ if [ ! -f ~/.ssh/id_rsa ]; then
 else
   ok
 fi
+
+exit

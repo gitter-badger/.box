@@ -18,4 +18,4 @@ action "pull master branch"
 ( cd $_BOX_ROOT && git reset --hard origin/master 2>&1 ) 
 ok
 
-die
+exit

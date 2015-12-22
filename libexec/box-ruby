@@ -39,3 +39,5 @@ echo "==> done..."
 
 # tell gem to skip generation of rdocs
 profile_write "gem: --no-ri --no-rdoc" "$HOME/.gemrc"
+
+exit

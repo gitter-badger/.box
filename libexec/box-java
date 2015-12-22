@@ -11,20 +11,38 @@ get_platform
 bot "Java Development Tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	# jEnv is a command line tool to help you forget how to set the JAVA_HOME environment variable
-	echo -e "\n=> Install Java Version Manager"
-	brew tap jenv/jenv
-	require_brew jenv
+  # jEnv is a command line tool to help you forget how to set the JAVA_HOME environment variable
+  action "Install Java Version Manager"
+  brew tap jenv/jenv
+  require_brew jenv
 
-	coderonin_write 'export PATH="$HOME/.jenv/bin:$PATH"'
-	coderonin_write 'if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
-	echo "==> done..."
+  coderonin_write 'export PATH="$HOME/.jenv/bin:$PATH"'
+  coderonin_write 'if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
+  ok
 
-	# install casks
-	require_cask java
-	require_cask eclipse-ide
+  action "install Java"
+  require_cask java
+  ok
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'implementation unfinished'
+  action "Install Java Version Manager"
+  git clone https://github.com/gcuisinier/jenv.git ~/.jenv
+
+  coderonin_write 'export PATH="$HOME/.jenv/bin:$PATH"'
+  coderonin_write 'if which jenv > /dev/null; then eval "$(jenv init -)"; fi'
+
+  action "install oracle java jdk"
+  sudo apt-get purge openjdk*
+  sudo add-apt-repository ppa:webupd8team/java
+  sudo apt-get update
+  sudo apt-get install -y oracle-java8-installer
+  sudo apt-get install -y oracle-java8-set-default
+  ok
 fi
+
+action "restarting shell"
+exec $SHELL -l
+ok
+
+exit

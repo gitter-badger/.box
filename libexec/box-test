@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# Usage: box $1
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help $1
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/box_functions"
+set -e
+
+bot "THIS IS THE BOT"
+
+running "RUNNING"
+action "ACTION"
+line
+info "some information"
+warn "a warning"
+error "AN ERROR"
+die "AND WE'RE OUT"

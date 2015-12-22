@@ -109,3 +109,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   chsh -s /usr/bin/zsh > /dev/null # 2>&1
 fi
 ok
+
+exit

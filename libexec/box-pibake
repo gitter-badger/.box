@@ -115,4 +115,4 @@ pv ${DISTRO} | sudo dd bs=1m of=${_rawdisk}
 action "Ejecting Disk"
 diskutil eject ${_rawdisk}
 
-die "All Done!"
+exit

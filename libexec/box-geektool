@@ -20,3 +20,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'geektool not available fo linux'
 fi
+
+exit

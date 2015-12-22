@@ -16,5 +16,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'implementation unfinished'
+  source "$_BOX_ROOT/lib/box-defaults/_linux.sh"
 fi
+
+exit

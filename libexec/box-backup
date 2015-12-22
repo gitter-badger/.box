@@ -15,8 +15,6 @@ action 'sync Drobo with SeagateBackup'
 rsync -azh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/
 
 action 'sync Drobo with Elements2TB'
-<<<<<<< Updated upstream
-rsync -avzh /Volumes/Drobo/Archive/ /Volumes/Elements2TB/Drobo/
-=======
 rsync -azh /Volumes/Drobo/Archive/ /Volumes/Elements2TB/Drobo/
->>>>>>> Stashed changes
+
+exit

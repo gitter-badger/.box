@@ -54,3 +54,5 @@ sudo python setup.py install &>/dev/null
 cd ..
 sudo rm -rf scapy-2*
 ok
+
+exit

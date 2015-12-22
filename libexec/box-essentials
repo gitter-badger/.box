@@ -40,3 +40,5 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   source "$_BOX_ROOT/lib/box-essentials/_linux.sh"
 fi
+
+exit

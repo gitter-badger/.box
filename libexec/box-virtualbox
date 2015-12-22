@@ -38,3 +38,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get install -y virtualbox
   sudo apt-get install -y vagrant
 fi
+
+exit
