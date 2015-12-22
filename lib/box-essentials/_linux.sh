@@ -76,5 +76,15 @@ xmodmap $HOME/.Xmodmap
 ok
 
 
+action "Remapping terminal keybindings"
+warn "only works for Ubuntu Mate"
+gsettings set org.mate.terminal.keybindings close-tab "<Control>w"
+gsettings set org.mate.terminal.keybindings close-window "<Control>q"
+gsettings set org.mate.terminal.keybindings copy "<Control>c"
+gsettings set org.mate.terminal.keybindings new-tab "<Control>t"
+gsettings set org.mate.terminal.keybindings new-window "<Control>n"
+gsettings set org.mate.terminal.keybindings paste "<Control>v"
+gsettings set org.mate.terminal.keybindings reset-and-clear "<Control>k"
+ok
 
 
