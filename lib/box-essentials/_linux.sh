@@ -64,6 +64,17 @@ cp -R config/* ~/.config/Mutate
 chmod -R a+x ~/.config/Mutate/scripts
 chmod -R a+w ~/.config/Mutate
 sed -i "s|{home}|$HOME|g" ~/.config/Mutate/config.ini
-
+rm -rf Mutate
 ok
+
+action "Remapping Super_L"
+touch $HOME/.Xmodmap
+profile_write 'clear Mod4' $HOME/.Xmodmap
+profile_write 'keycode 133 = Super_L NoSymbol Super_L' $HOME/.Xmodmap
+profile_write 'add control = Control_L Super_L' $HOME/.Xmodmap
+xmodmap $HOME/.Xmodmap
+ok
+
+
+
 
