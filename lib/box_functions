@@ -5,7 +5,7 @@
 # @author Adam Eivy
 ###
 
-CODERONIN_DOTFILE="$HOME/.coderonin"
+CODERONIN_DOTFILE=$HOME/.coderonin
 touch "$CODERONIN_DOTFILE"
 
 # Colors
