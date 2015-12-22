@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box golang
-# Summary: install golang
+# Summary: install golang development environment
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
