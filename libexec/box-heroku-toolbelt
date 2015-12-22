@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box heroku-toolbelt
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help heroku-toolbelt
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install heroku toolbelt
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e

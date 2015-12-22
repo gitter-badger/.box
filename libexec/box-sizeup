@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box sizeup
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help sizeup
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install sizeup (a linux style window manager for OSX)
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -28,4 +25,3 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	die 'depending on your linux you already have a nice window manager..'
 fi
-

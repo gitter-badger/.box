@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box mongodb
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help mongodb
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install mongodb and genghisapp for gui
+# Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e

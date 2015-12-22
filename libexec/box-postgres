@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box postgres
-# Summary: write a summary for your new command
+# Summary: install postgres and pgadmin3
 # Help: This will print out when you run box help postgres
 # You can have multiple lines even!
 #
@@ -15,7 +15,7 @@ get_platform
 bot "Postgres"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	require_brew postgresql	
+	require_brew postgresql
 
 	# launch postgres at startup
 	ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents

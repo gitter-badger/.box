@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box arduino
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help arduino
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install arduino development environment
+# Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e

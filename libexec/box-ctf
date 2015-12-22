@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box ctf
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help ctf
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install a suite of tools useful for Capture the Flag
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e

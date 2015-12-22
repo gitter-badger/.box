@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box redis
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help redis
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install redis and a gui for redis
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -21,7 +18,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 	ln -sfv /usr/local/opt/redis/*.plist ~/Library/LaunchAgents
 	# Then to load redis now:
 	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.redis.plist
-  
+
   # a gui client for redis
   require_cask rdm
 fi

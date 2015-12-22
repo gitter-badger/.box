@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box git
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help git
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install git, git-flot, and gibo for managing .gitignore
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -26,7 +23,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
 fi
 
-# backup 
+# backup
 mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
 # use gibo to populate a sensible global gitignore
 gibo OSX Rails Ruby Python SublimeText Textmate Jetbrains Vagrant >> "$HOME/.gitignore_global"

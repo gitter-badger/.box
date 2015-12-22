@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box php
-# Summary: write a summary for your new command
+# Summary: install php development tools
 # Help: This will print out when you run box help php
 # You can have multiple lines even!
 #

@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box scala
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help scala
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install scala development tools
+# Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -32,7 +29,7 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 	# install JDK
 	sudo apt-get install -y openjdk-7-jdk
-	
+
 	# install scala
 	sudo apt-get install -y scala
 
@@ -41,7 +38,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	echo "deb http://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
 	sudo apt-get update
 	sudo apt-get install -y sbt
-	
+
 	# download and install eclipse scala-ide
 	# http://scala-ide.org/
 fi

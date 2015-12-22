@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box nodejs
-# Summary: write a summary for your new command
+# Summary: install nodejs development tools
 # Help: This will print out when you run box help nodejs
 # You can have multiple lines even!
 #
@@ -22,7 +22,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   # nvm load in coderonin file
   coderonin_write 'export NVM_DIR="$HOME/.nvm"'
   coderonin_write '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm'
-  
+
   # immediately load nvm so we can install node and npm
   export NVM_DIR="$HOME/.nvm"
   [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
@@ -59,19 +59,19 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   #Installing the pre-requisites:
   sudo apt-get install -y python-software-properties python g++ make
-  
+
   # Add the PPA Repository, which is recommended by Joyent (the maintainers of Node.js):
   sudo add-apt-repository ppa:chris-lea/node.js
-  
+
   # Update the package list:
   sudo apt-get update
-  
+
   # Install Node.js:
   sudo apt-get install -y nodejs npm
 
   sudo npm install sails -g
   # The -g flag ensures that sails is installed globally and can be used as a command-line tool.
-  
+
   # js framework package manager
   sudo npm install -g bower
 fi

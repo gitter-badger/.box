@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box golang
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help golang
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install golang
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -27,11 +24,11 @@ fi
  # Next you'll need to setup your $GOPATH
 mkdir "$HOME/go"
 export GOPATH="$HOME/go"
- 
+
 # install the go tour code
 go get code.google.com/p/go-tour/gotour
 coderonin_write 'alias gotour=$GOPATH/bin/gotour'
- 
+
 # Next you'll need to add $GOPATH to your $HOME/.bash_profile ... using your favorite text editor edit $HOME/.bash_profile ...
 coderonin_write 'export GOPATH=$HOME/go'
 coderonin_write 'export PATH=$PATH:$GOPATH/bin'

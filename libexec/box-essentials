@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box essentials
-# Summary: write a summary for your new command
+# Summary: install essential tools
 # Help: Customize in `~/.laptop.local`
 # ------------------------------
 #   Your `~/.laptop.local` is run at the end of the Essentials command.

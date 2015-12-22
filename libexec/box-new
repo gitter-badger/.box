@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Usage: box new
-# Summary: scaffold a new command for box
+# Summary: create a new command for box
 # Help: This will print out when you run `box help new`.
 # You can have multiple lines even!
 #
@@ -16,12 +16,12 @@ bot "New Box Command"
 
 if [[ $# -eq 0 ]] ; then
   error 'please provide a name for your new command'
-  die 
+  die
 fi
 
 command_file="$HOME/.box/libexec/box-$1"
 if [ -s "$command_file" ]
-  then 
+  then
     die "COMMAND EXISTS"
   else
     action "create $command_file"
@@ -30,4 +30,3 @@ if [ -s "$command_file" ]
     echo "$TEMPLATE" > $command_file
     ok
 fi
-

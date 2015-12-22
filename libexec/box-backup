@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box drobosync
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help drobosync
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: rsync data between external drives
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 

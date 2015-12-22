@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box virtualbox
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help virtualbox
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install virtualbox and vagrant tools
+# Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e

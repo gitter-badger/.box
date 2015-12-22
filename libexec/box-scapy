@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box scapy
-# Summary: write a summary for your new command
-# Help: This will print out when you run box help scapy
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Summary: install scapy
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -15,8 +12,8 @@ get_platform
 bot "Scapy"
 
 # check that python is installed -- warn and exit if not found
-command -v python >/dev/null 2>&1 || { 
-  echo >&2 "Scapy requires python but it does not appear to be installed.  Aborting."; exit 1; 
+command -v python >/dev/null 2>&1 || {
+  echo >&2 "Scapy requires python but it does not appear to be installed.  Aborting."; exit 1;
 }
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
@@ -32,22 +29,22 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   cd ../../
   sudo rm -rf libdnet-1.12*
   ok
-  
+
   action "Install libpcap and its Python wrapper"
-  wget http://dfn.dl.sourceforge.net/sourceforge/pylibpcap/pylibpcap-0.6.2.tar.gz 
+  wget http://dfn.dl.sourceforge.net/sourceforge/pylibpcap/pylibpcap-0.6.2.tar.gz
   tar xfz pylibpcap-0.6.2.tar.gz &>/dev/null
   cd pylibpcap-0.6.2
   sudo python setup.py install &>/dev/null
   cd ../
   sudo rm -rf pylibpcap-0.6.2*
   ok
-  
+
   # Optionally: Install readline:
   # python `python -c "import pimp; print pimp.__file__"` -i readline
 fi
 
 action "install scapy"
-wget scapy.net 
+wget scapy.net
 mv index.html scapy-latest.zip
 unzip scapy-latest.zip &>/dev/null
 rm scapy-latest.zip
