@@ -1,0 +1,21 @@
+# Setup a new Ubuntu Mate 15.10 box
+sudo apt-get update
+sudo apt-get install -y git
+
+# install .box
+git clone https://github.com/bhedana/box.git .box
+# temporarily activate box
+eval "$(~/.box/bin/box init -)"
+
+# install essentials
+box essentials
+box defaults
+
+# install guest additions
+# enable bidirectional clipboard sharing
+
+box ssh
+# add key to github
+
+box zsh
+box text-editor
