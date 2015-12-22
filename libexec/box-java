@@ -4,6 +4,7 @@
 # Help:
 #  jenv help.. see http://www.jenv.be
 #
+source "$_BOX_ROOT/lib/box_functions"
 set -e
 
 bot "BOXBOT!"
