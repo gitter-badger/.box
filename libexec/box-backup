@@ -9,10 +9,14 @@ action 'Kick off a Time Machine Backup'
 tmutil startbackup -a
 
 action 'sync OTG128x01 to Drobo'
-rsync -avzh /Volumes/OTG128x01/ /Volumes/Drobo/Archive/OTG128x01/
+rsync -azh /Volumes/OTG128x01/ /Volumes/Drobo/Archive/OTG128x01/
 
 action 'sync Drobo with SeagateBackup'
-rsync -avzh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/
+rsync -azh /Volumes/Drobo/Archive/ /Volumes/SeagateBackup/Drobo/
 
 action 'sync Drobo with Elements2TB'
+<<<<<<< Updated upstream
 rsync -avzh /Volumes/Drobo/Archive/ /Volumes/Elements2TB/Drobo/
+=======
+rsync -azh /Volumes/Drobo/Archive/ /Volumes/Elements2TB/Drobo/
+>>>>>>> Stashed changes
