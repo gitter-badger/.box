@@ -167,8 +167,10 @@ TEMPLATE='#!/usr/bin/env bash
 #
 #    Show off an example indented
 #
-source "\$_BOX_ROOT/lib/box_functions"
+source "$_BOX_ROOT/lib/box_functions"
 set -e
+
+bot "BOXBOT!"
 
 exit
 '

@@ -30,3 +30,5 @@ if [ -s "$command_file" ]
     echo "$TEMPLATE" > $command_file
     ok
 fi
+
+exit
