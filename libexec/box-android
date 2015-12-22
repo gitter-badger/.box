@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box android
 # Summary: install android development environment
-# Help: 
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 # set -e
@@ -12,16 +12,34 @@ get_platform
 bot "Android"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	# not needed if using android-studio
-	# require_brew android-sdk
-	require_brew apktool
-  require_cask java
+  $_BOX_ROOT/bin/box java
+
+  action "Install Android Tools"
+  brew install android-platform-tools
+  ok
+
+  action "Install Android Studio"
 	require_cask android-studio
-	require_cask android-file-transfer
+	ok
+
+	# action "Install APK Tool"
+	# require_brew apktool
+	# ok
+
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'linux implementation for android not currently available'
+	$_BOX_ROOT/bin/box java
+
+  action "Install Android Tools"
+  sudo apt-get install android-tools-adb android-tools-fastboot
+  ok
+
+	action "Install Android Studio"
+	sudo apt-add-repository ppa:paolorotolo/android-studio
+	sudo apt-get update
+	sudo apt-get install android-studio
+
 fi
 
 exit
