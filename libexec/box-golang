@@ -27,11 +27,11 @@ export GOPATH="$HOME/go"
 
 # install the go tour code
 go get code.google.com/p/go-tour/gotour
-coderonin_write 'alias gotour=$GOPATH/bin/gotour'
+profile_write 'alias gotour=$GOPATH/bin/gotour' $CODERONIN_DOTFILE
 
 # Next you'll need to add $GOPATH to your $HOME/.bash_profile ... using your favorite text editor edit $HOME/.bash_profile ...
-coderonin_write 'export GOPATH=$HOME/go'
-coderonin_write 'export PATH=$PATH:$GOPATH/bin'
+profile_write 'export GOPATH=$HOME/go' $CODERONIN_DOTFILE
+profile_write 'export PATH=$PATH:$GOPATH/bin' $CODERONIN_DOTFILE
 
 # this is kinda messy.. a single gopath for all your golang projects might not be optimal
 # check out autoenv for per-directory configuration

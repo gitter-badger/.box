@@ -20,8 +20,8 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   curl https://raw.githubusercontent.com/creationix/nvm/v0.27.1/install.sh | bash
 
   # nvm load in coderonin file
-  coderonin_write 'export NVM_DIR="$HOME/.nvm"'
-  coderonin_write '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm'
+  profile_write 'export NVM_DIR="$HOME/.nvm"' $CODERONIN_DOTFILE
+  profile_write '[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm' $CODERONIN_DOTFILE
 
   # immediately load nvm so we can install node and npm
   export NVM_DIR="$HOME/.nvm"

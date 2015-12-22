@@ -147,16 +147,11 @@ function get_platform() {
 function profile_write {
   # try to ensure we don't create duplicate entries in the .coderonin file
   touch $2
-  action "ensure that $2 exists in $1"
+  action "ensure that $1 exists in $2"
   if ! grep -q "$1" "$2" ; then
     echo "$1" >> "$2"
   fi
   ok
-}
-
-function coderonin_write {
-  profile_write $1 $CODERONIN_DOTFILE
-  source "$CODERONIN_DOTFILE"
 }
 
 TEMPLATE='#!/usr/bin/env bash
