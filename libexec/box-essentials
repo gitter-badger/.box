@@ -27,6 +27,13 @@ profile_write "source $CODERONIN_DOTFILE" "$HOME/.bash_profile"
 profile_write "source $CODERONIN_DOTFILE" "$HOME/.zshrc"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
+  bot "Checking Dependencies"
+  running "checking Xcode Command Line Tools install"
+  if [[ $(xcode-select -p) != "/Applications/Xcode.app/Contents/Developer" ]]; then
+    action "  installing"
+    xcode-select --install
+  fi
+  ok
   source "$_BOX_ROOT/lib/box-essentials/_darwin.sh"
 fi
 
