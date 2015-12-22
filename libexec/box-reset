@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# Usage: box $1
+# Summary: fetch and reset box
+# Help: 
+#
+source "$_BOX_ROOT/lib/box_functions"
+# set -e
+
+bot "BOXBOT!"
+
+bot "Discarding local changes and updating Box"
+
+action "fetch repo data"
+( cd $_BOX_ROOT && git fetch 2>&1 ) 
+ok
+
+action "pull master branch"
+( cd $_BOX_ROOT && git reset --hard origin/master 2>&1 ) 
+ok
+
+die
