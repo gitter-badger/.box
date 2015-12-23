@@ -1,39 +1,35 @@
 #!/usr/bin/env bash
 # Usage: box arduino
-# Summary: install arduino development environment
+# Summary: install arduino Development environment
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Arduino"
+bot "Install Arduino Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-
 	#install arduino 1.6.3
 	action "Install Arduino IDE"
 	require_cask arduino
 	ok
 
-	# install FTDI driver
-	# http://www.ftdichip.com/Drivers/D2XX/MacOSX/D2XX1.2.2.dmg
+  warn "you may need to install the FTDI driver"
+  warn "visit http://www.ftdichip.com/FTDrivers.htm to download latest."
 
 	# TODO - check if arduino 1.6.3 supports digispark controllers
 	# - create cask for digispark arduino ide
 	# digispark
 	# http://sourceforge.net/projects/digistump/files/DigisparkArduino-MacOSX-1.0.4-May19.zip/download
-
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-
 	action "Install Arduino IDE"
 	sudo apt-get install -y arduino arduino-core
 	ok
-
 fi
 
 exit

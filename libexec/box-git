@@ -10,12 +10,12 @@
 #
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Git"
+bot "Installing Git"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 

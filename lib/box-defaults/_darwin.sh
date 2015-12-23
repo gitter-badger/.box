@@ -4,7 +4,7 @@
 cp $_BOX_ROOT/lib/box-defaults/config/_tm_properties $HOME/.tm_properties
 
 ###############################################################################
-bot "Configuring General System UI/UX..."
+action "Configuring General System UI/UX..."
 ###############################################################################
 
 ###############################################################################
@@ -45,7 +45,7 @@ running "General: double-click a window's title bar to minimize"
 defaults write NSGlobalDomain AppleMiniaturizeOnDoubleClick -bool TRUE;ok
 
 ################################################
-bot "Standard System Changes"
+action "Standard System Changes"
 ################################################
 running "always boot in verbose mode (not OSX GUI mode)"
 sudo nvram boot-args="-v";ok
@@ -165,7 +165,7 @@ sudo rm -rf /System/Library/CoreServices/DefaultDesktop.jpg
 sudo ln -s ~/.dotfiles/img/wallpaper.jpg /System/Library/CoreServices/DefaultDesktop.jpg;ok
 
 ###############################################################################
-bot "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
+action "Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 ###############################################################################
 
 running "Trackpad: enable tap to click for this user and for the login screen"
@@ -226,7 +226,7 @@ defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false;o
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist > /dev/null 2>&1;ok
 
 ###############################################################################
-bot "Configuring the Screen"
+action "Configuring the Screen"
 ###############################################################################
 
 running "Require password immediately after sleep or screen saver begins"
@@ -249,7 +249,7 @@ running "Enable HiDPI display modes (requires restart)"
 sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutionEnabled -bool TRUE;ok
 
 ###############################################################################
-bot "Finder Configs"
+action "Finder Configs"
 ###############################################################################
 
 running "Allow quitting via ⌘ + Q; doing so will also hide desktop icons"
@@ -365,7 +365,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
   Privileges -bool TRUE;ok
 
 ###############################################################################
-bot "Dock & Dashboard"
+action "Dock & Dashboard"
 ###############################################################################
 
 running "Enable highlight hover effect for the grid view of a stack (Dock)"
@@ -448,7 +448,7 @@ sudo ln -sf "/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulato
 # running "Add a spacer to the right side of the Dock (where the Trash is)"
 # defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-type="spacer-tile";}';ok
 
-bot "Configuring Hot Corners"
+action "Configuring Hot Corners"
 # Possible values:
 #  0: no-op
 #  2: Mission Control
@@ -475,7 +475,7 @@ defaults write com.apple.dock wvous-br-corner -int 0
 defaults write com.apple.dock wvous-br-modifier -int 0; ok
 
 ###############################################################################
-bot "Configuring Safari & WebKit"
+action "Configuring Safari & WebKit"
 ###############################################################################
 
 running "Privacy: don't send search queries to Apple"
@@ -524,7 +524,7 @@ running "Add a context menu item for showing the Web Inspector in web views"
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool TRUE;ok
 
 ###############################################################################
-bot "Configuring Mail"
+action "Configuring Mail"
 ###############################################################################
 
 running "Disable send and reply animations in Mail.app"
@@ -549,7 +549,7 @@ running "Disable automatic spell checking"
 defaults write com.apple.mail SpellCheckingBehavior -string "NoSpellCheckingEnabled";ok
 
 ###############################################################################
-bot "Spotlight"
+action "Spotlight"
 ###############################################################################
 
 # running "Hide Spotlight tray-icon (and subsequent helper)"
@@ -584,7 +584,7 @@ sudo mdutil -i on / > /dev/null 2>&1;ok
 #sudo mdutil -E / > /dev/null 2>&1;ok
 
 ###############################################################################
-bot "Terminal & iTerm2"
+action "Terminal & iTerm2"
 ###############################################################################
 
 running "Only use UTF-8 in Terminal.app"
@@ -626,7 +626,7 @@ ok
 # defaults import com.googlecode.iterm2 /tmp/plist;ok
 
 ###############################################################################
-bot "Time Machine"
+action "Time Machine"
 ###############################################################################
 
 running "Prevent Time Machine from prompting to use new hard drives as backup volume"
@@ -636,7 +636,7 @@ running "Disable local Time Machine backups"
 hash tmutil > /dev/null 2>&1 && sudo tmutil disablelocal;ok
 
 ###############################################################################
-bot "Activity Monitor"
+action "Activity Monitor"
 ###############################################################################
 
 running "Show the main window when launching Activity Monitor"
@@ -653,7 +653,7 @@ defaults write com.apple.ActivityMonitor SortColumn -string "CPUUsage"
 defaults write com.apple.ActivityMonitor SortDirection -int 0;ok
 
 ###############################################################################
-bot "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
+action "Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 ###############################################################################
 
 running "Enable the debug menu in Address Book"
@@ -677,7 +677,7 @@ defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool TRUE
 defaults write com.apple.DiskUtility advanced-image-options -bool TRUE;ok
 
 ###############################################################################
-bot "Mac App Store"
+action "Mac App Store"
 ###############################################################################
 
 running "Enable the WebKit Developer Tools in the Mac App Store"
@@ -687,7 +687,7 @@ running "Enable Debug Menu in the Mac App Store"
 defaults write com.apple.appstore ShowDebugMenu -bool TRUE;ok
 
 ###############################################################################
-bot "Messages"
+action "Messages"
 ###############################################################################
 
 running "Disable automatic emoji substitution (i.e. use plain text smileys)"
@@ -707,7 +707,7 @@ defaults write com.apple.messageshelper.MessageController SOInputLineSettings -d
 defaults write ~/Library/Preferences/org.gpgtools.gpgmail SignNewEmailsByDefault -bool false
 
 ###############################################################################
-bot "Google Chrome & Google Chrome Canary"
+action "Google Chrome & Google Chrome Canary"
 ###############################################################################
 
 running "Allow installing user scripts via GitHub Gist or Userscripts.org"
@@ -726,7 +726,7 @@ defaults write com.google.Chrome.canary DisablePrintPreview -bool TRUE; ok
 # ###############################################################################
 # # Kill affected applications                                                  #
 # ###############################################################################
-# bot "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
+# action "OK. Note that some of these changes require a logout/restart to take effect. Killing affected applications (so they can reboot)...."
 # for app in "Activity Monitor" "Address Book" "Calendar" "Contacts" "cfprefsd" \
 #   "Dock" "Finder" "Mail" "Messages" "Safari" "SystemUIServer" \
 #   "iCal" "Terminal"; do

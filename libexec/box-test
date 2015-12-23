@@ -1,20 +1,47 @@
 #!/usr/bin/env bash
 # Usage: box $1
 # Summary: write a summary for your new command
-# Help: This will print out when you run box help $1
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Help: This is just a test file
+#   acceptable params
+#     -u Install GUI applications
+#     -v Verbose output
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
+
+banner
+
+verbose=0
+install_ui=0
+
+while getopts "h?vu:" opt; do
+    case "$opt" in
+    h|\?)
+        # box help ${$0:0:${#0}}
+        eval ${$0#'box-'}
+        exit 0
+        ;;
+    v)  verbose=1
+        ;;
+    u)  install_ui=1
+        ;;
+    esac
+done
+
+shift $((OPTIND-1))
+
+[ "$1" = "--" ] && shift
+
+echo "verbose=$verbose, install_ui='$install_ui', Leftovers: $@"
 
 bot "THIS IS THE BOT"
 
 running "RUNNING"
 action "ACTION"
-line
 info "some information"
 warn "a warning"
 error "AN ERROR"
+line
+info $1 $2 $3
+line
+
 die "AND WE'RE OUT"

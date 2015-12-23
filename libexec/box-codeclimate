@@ -4,12 +4,12 @@
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Codeclimate"
+bot "Install Codeclimate"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	die 'implementation unfinished'

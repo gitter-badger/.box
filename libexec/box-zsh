@@ -1,28 +1,27 @@
 #!/usr/bin/env bash
 # Usage: box zsh
 # Summary: install Z-shell and a mess of awesome plugins for zsh
-# Help:
+# Help: for more information see
+#  http://www.slideshare.net/jaguardesignstudio/why-zsh-is-cooler-than-your-shell-16194692
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-# http://www.slideshare.net/jaguardesignstudio/why-zsh-is-cooler-than-your-shell-16194692
+banner
 
-bot "BOXBOT!"
 get_platform
 
-bot "ZShell"
+bot "Installing ZShell"
 
+running "Install ZSH"
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew zsh
   require_brew zsh-completions
 fi
-
 if [ "$NS_PLATFORM" == "linux" ]; then
 	sudo apt-get install -y zsh
 fi
+ok
 
-set +e # allow shell to ask for password
 running "ensure that zsh exists in /etc/shells"
 if ! grep -q "/usr/local/bin/zsh" "/etc/shells" ; then
   sudo echo "/usr/local/bin/zsh" >> "/etc/shells"
@@ -32,7 +31,6 @@ ok
 running "backup your existing ~/.zshrc file:"
 cp "$HOME/.zshrc" "$HOME/.zshrc.bak"
 ok
-set -e
 
 running "ensure .coderonin file exists"
 touch "$HOME/.coderonin"

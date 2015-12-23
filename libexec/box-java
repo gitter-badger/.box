@@ -5,12 +5,12 @@
 #  jenv help.. see http://www.jenv.be
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Java Development Tools"
+bot "Installing Java Development Tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   # jEnv is a command line tool to help you forget how to set the JAVA_HOME environment variable

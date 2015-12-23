@@ -8,12 +8,12 @@
 #   See .laptop.local.example for example usage
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "System Essentials"
+bot "Install System Essential tools"
 
 # ensure our primary customizations dotfile is present
 touch "$CODERONIN_DOTFILE"
@@ -27,7 +27,7 @@ profile_write "source $CODERONIN_DOTFILE" "$HOME/.bash_profile"
 profile_write "source $CODERONIN_DOTFILE" "$HOME/.zshrc"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-  bot "Checking Dependencies"
+  action "Checking Dependencies"
   running "checking Xcode Command Line Tools install"
   if [[ $(xcode-select -p) != "/Applications/Xcode.app/Contents/Developer" ]]; then
     action "  installing"

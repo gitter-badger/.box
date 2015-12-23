@@ -1,8 +1,8 @@
 # still a WIP
 Use at your own risk
 
-# New System development environment setup
-Intended to quickly and easily configure development dependencies for a variety of disciplines
+# New System Development environment setup
+Intended to quickly and easily configure Development dependencies for a variety of disciplines
 Initially created just for OSX I have been adding debian configurations as has been necesary
 
 Install and Initialize:

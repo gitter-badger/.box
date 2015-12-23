@@ -4,9 +4,8 @@
 # Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "BOXBOT!"
+banner
 
 bot "Discarding local changes and updating Box"
 

@@ -11,22 +11,9 @@
 # 3. Wait for disk to finish writing. You can check the write progress with `Ctrl+T`.
 
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
-
-function banner(){
-info '
-__________.___  .___                 __         .__  .__                
-\______   \   | |   | ____   _______/  |______  |  | |  |   ___________ 
- |     ___/   | |   |/    \ /  ___/\   __\__  \ |  | |  | _/ __ \_  __ \
- |    |   |   | |   |   |  \\___ \  |  |  / __ \|  |_|  |_\  ___/|  | \/
- |____|   |___| |___|___|  /____  > |__| (____  /____/____/\___  >__|   
-                         \/     \/            \/               \/       
-'
-}
 
 # Set $1 as image path
 DISTRO="$1"
-echo $DISTRO
 
 # Check image path is set else exit
 if [ -z "$DISTRO" ]; then
@@ -81,15 +68,13 @@ function promptDisk() {
 
     # Test if valid disk selected
     if [ -z "$_udisk" ]; then
-      clear
-      error " ======= Invalid selection ======= "
       banner
+      error " ======= Invalid selection ======= "
       promptDisk
     fi
 }
 
 # Run prompt
-clear
 banner
 promptDisk
 
@@ -97,7 +82,6 @@ promptDisk
 # ===========================================================
 # Past this point a valid disk has been selected, so proceed.
 # ===========================================================
-clear
 banner
 
 # Format disk name to raw format

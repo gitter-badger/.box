@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Usage: box golang
-# Summary: install golang development environment
+# Summary: install golang Development environment
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Golang"
+bot "Installing Golang"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew hg

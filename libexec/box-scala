@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Usage: box scala
-# Summary: install scala development tools
+# Summary: install scala Development tools
 # Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Scala"
+bot "Installing Scala Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	# install JDK

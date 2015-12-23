@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Usage: box android
-# Summary: install android development environment
+# Summary: install android Development environment
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Android"
+bot "Install Android Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   $_BOX_ROOT/bin/box java

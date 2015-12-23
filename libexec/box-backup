@@ -5,6 +5,8 @@
 #
 source "$_BOX_ROOT/lib/box_functions"
 
+banner
+
 action 'Kick off a Time Machine Backup'
 tmutil startbackup -a
 

@@ -1,13 +1,15 @@
 #!/usr/bin/env bash
 # Usage: box python
-# Summary: install python development tools
+# Summary: install python Development tools
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "Python"
+banner
+
 get_platform
+
+bot "Installing Python Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   action "Install pyenv"
@@ -29,7 +31,7 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
   # Databases: You may not need all of these;
   # none are explicit dependencies of other items in this script.
-  # SQLite and MySQL are pretty generally used for web development
+  # SQLite and MySQL are pretty generally used for web Development
   sudo apt-get install -y python-mysqldb libmysqlclient-dev
   sudo apt-get install -y libxml2-dev libxslt-dev  # needed for Python package 'lxml'
 

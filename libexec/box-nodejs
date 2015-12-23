@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # Usage: box nodejs
-# Summary: install nodejs development tools
+# Summary: install nodejs Development tools
 # Help: This will print out when you run box help nodejs
 # You can have multiple lines even!
 #
 #    Show off an example indented
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "NodeJS"
+bot "Installing NodeJS Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   # node version manager

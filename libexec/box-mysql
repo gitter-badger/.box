@@ -4,9 +4,12 @@
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "MySQL"
+banner
+
+get_platform
+
+bot "installing MySQL"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	require_brew mysql

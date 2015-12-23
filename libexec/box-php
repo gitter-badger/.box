@@ -1,18 +1,18 @@
 #!/usr/bin/env bash
 # Usage: box php
-# Summary: install php development tools
+# Summary: install php Development tools
 # Help: This will print out when you run box help php
 # You can have multiple lines even!
 #
 #    Show off an example indented
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "PHP 5.6"
+bot "Installing PHP 5.6 Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   brew tap homebrew/dupes

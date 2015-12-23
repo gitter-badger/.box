@@ -1,14 +1,15 @@
 #!/usr/bin/env bash
-# Usage: box sublime-text
-# Summary: install a good text editor
+# Usage: box text-editor
+# Summary: install an advanced text editor
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
+bot "Install an advanced text editor"
 echo "Which Editor would you like"
 echo " 1. Atom"
 echo " 2. Sublime"

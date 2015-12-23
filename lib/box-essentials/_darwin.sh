@@ -54,7 +54,7 @@ if [[ -f "$_BOX_ROOT/.laptop.local" ]]; then
   source "$_BOX_ROOT/.laptop.local"
 fi
 
-bot "Alright, cleaning up homebrew cache..."
+action "cleaning up homebrew cache..."
 # Remove outdated versions from the cellar
 brew cleanup > /dev/null 2>&1
-bot "All clean"
+ok

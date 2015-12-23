@@ -4,9 +4,9 @@
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-# set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
 bot "SSH Setup"
@@ -29,12 +29,13 @@ if [ ! -f ~/.ssh/id_rsa ]; then
 
   running "copying ssh key to clipboard"
   if [ "$NS_PLATFORM" == "darwin" ]; then
-    pbcopy < ~/.ssh/id_rsa.pub; ok 
+    pbcopy < ~/.ssh/id_rsa.pub; ok
   fi
   if [ "$NS_PLATFORM" == "linux" ]; then
-    xclip < ~/.ssh/id_rsa.pub; ok 
+    xclip < ~/.ssh/id_rsa.pub; ok
   fi
-
+  ok
+  
   echo "################################################################"
   echo "Your shiny new ssh key has been copied to the clipboard.. "
   echo "you should now log into github and paste your key."

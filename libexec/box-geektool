@@ -4,12 +4,12 @@
 # Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Geektool"
+bot "Installing Geektool"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask geektool

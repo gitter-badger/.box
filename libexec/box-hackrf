@@ -7,12 +7,12 @@
 #    Show off an example indented
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "HackRF Tools"
+bot "Installing HackRF Tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	die 'implementation unfinished'
@@ -23,7 +23,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 fi
 
 
-# installed brew formulae for HackRFsystem s development
+# installed brew formulae for HackRFsystem s Development
 
 # HackRF OSX Install
 # This will walk you through getting HackRF to work on OSX. It is really just an adaptation of the awesome collection of Homebrew recipes from Titanous for getting GNU Radio running on OSX.

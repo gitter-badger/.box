@@ -4,7 +4,9 @@
 # Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
+
+banner
+
 
 
 

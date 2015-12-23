@@ -4,12 +4,12 @@
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Scapy"
+bot "Installing Scapy"
 
 # check that python is installed -- warn and exit if not found
 command -v python >/dev/null 2>&1 || {

@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 # Usage: box ruby
-# Summary: install ruby development tools
+# Summary: install ruby Development tools
 # Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
-set -e
 
-bot "BOXBOT!"
+banner
+
 get_platform
 
-bot "Ruby"
+bot "Installing Ruby Development tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	require_brew openssl
@@ -26,7 +26,7 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	sudo apt-get install -y qt-sdk
 fi
 
-echo -e "\n=> Check for RVM Installation"
+running "Check for RVM Installation"
 if [ ! $(command -v rvm) == "" ]; then
   echo -e "\n=> RVM Installed"
 else
@@ -35,7 +35,7 @@ else
   curl -sSL https://get.rvm.io | bash -s stable --ruby
 	# echo "source ~/.rvm/scripts/rvm" >> ~/.bashrc
 fi
-echo "==> done..."
+ok
 
 # tell gem to skip generation of rdocs
 profile_write "gem: --no-ri --no-rdoc" "$HOME/.gemrc"
