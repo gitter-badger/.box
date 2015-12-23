@@ -31,7 +31,7 @@ fi
 if [ "$NS_PLATFORM" == "linux" ]; then
 
 	action "Install Arduino IDE"
-	sudo apt-get install arduino arduino-core
+	sudo apt-get install -y arduino arduino-core
 	ok
 
 fi

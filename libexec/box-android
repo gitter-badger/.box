@@ -32,13 +32,13 @@ if [ "$NS_PLATFORM" == "linux" ]; then
 	$_BOX_ROOT/bin/box java
 
   action "Install Android Tools"
-  sudo apt-get install android-tools-adb android-tools-fastboot
+  sudo apt-get install -y android-tools-adb android-tools-fastboot
   ok
 
 	action "Install Android Studio"
 	sudo apt-add-repository ppa:paolorotolo/android-studio
 	sudo apt-get update
-	sudo apt-get install android-studio
+	sudo apt-get install -y android-studio
 
 fi
 
