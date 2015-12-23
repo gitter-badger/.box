@@ -1,7 +1,13 @@
 #!/usr/bin/env bash
 # Usage: box git
-# Summary: install git, git-flot, and gibo for managing .gitignore
+# Summary: install git, git-flow, and gibo for managing .gitignore
 # Help:
+# see here for gibo
+# https://github.com/simonwhitaker/gibo
+#
+# see here for available gitignore templates
+# https://github.com/github/gitignore
+#
 #
 source "$_BOX_ROOT/lib/box_functions"
 set -e
@@ -12,35 +18,46 @@ get_platform
 bot "Git"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
+
+  action "Installing Git-Flow"
   require_brew git-flow
-  # gitignore boilerplate manager
+  ok
+
+  action "Installing GitIgnore Boilerplate Manager"
   require_brew gibo
+  ok
+
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
+
+  action "Installing Git-Flow"
 	sudo apt-get install -y git-flow
-  # gitignore boilerplate manager
+  ok
+
+  action "Installing GitIgnore Boilerplate Manager"
   curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
+  ok
+
 fi
 
-# backup
+action "Backup existing .gitignore_global"
 mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
+ok
+
 # use gibo to populate a sensible global gitignore
 gibo OSX Rails Ruby Python SublimeText Textmate Jetbrains Vagrant >> "$HOME/.gitignore_global"
 
-# see here for available gitignore templates
-# https://github.com/github/gitignore
-
-# see here for gibo
-# https://github.com/simonwhitaker/gibo
-
+action "Configure GIT user"
 git config --global color.ui true
 echo -n "Enter your name and press [ENTER]: "
 read name
 git config --global user.name "$name"
+
 echo -n "Enter your email and press [ENTER]: "
 read email
 git config --global user.email "$email"
-echo "==> done..."
+
+ok
 
 exit
