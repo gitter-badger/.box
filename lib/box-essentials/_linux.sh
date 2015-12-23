@@ -67,3 +67,6 @@ sed -i "s|{home}|$HOME|g" ~/.config/Mutate/config.ini
 rm -rf Mutate
 ok
 
+# TODO
+# how to add mutate to startup apps
+# how to change default keybinding for mutate
