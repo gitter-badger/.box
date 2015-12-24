@@ -13,12 +13,21 @@ bot "Installing Geektool"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask geektool
-
   $_BOX_ROOT/lib/box-geektool/install.sh
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'geektool not available fo linux'
+  running "install conky"
+  sudo apt-get install conky curl lm-sensors hddtemp
+  ok
+
+  running "creating config"
+  touch ~/.concyrc
+  mkdir ~/.conky
+  # conky &
+
+  info "see https://help.ubuntu.com/community/SettingUpConky for more information"
+  info "see $_BOX_ROOT/lib/box-geektool/concky.zip for a sample"
 fi
 
 exit
