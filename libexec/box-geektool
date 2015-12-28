@@ -21,13 +21,13 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get install conky curl lm-sensors hddtemp
   ok
 
-  running "creating config"
-  touch ~/.concyrc
-  mkdir ~/.conky
-  # conky &
+  running "copying config"
+  cp $_BOX_ROOT/lib/box-conky/_conkyrc ~/.conkyrc
+  ok
 
-  info "see https://help.ubuntu.com/community/SettingUpConky for more information"
-  info "see $_BOX_ROOT/lib/box-geektool/concky.zip for a sample"
+  action "adding conky to autostart"
+  cp $_BOX_ROOT/lib/box-conky/conky.desktop ~/.config/autostart
+  ok
 fi
 
 exit
