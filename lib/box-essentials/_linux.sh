@@ -13,6 +13,7 @@ info -e "Using $pm for package installation\n"
 action "Update apt cache"
 sudo $pm update
 
+#########################################################
 action "Installing build tools"
 sudo $pm -y install \
   autoconf \
@@ -42,6 +43,8 @@ sudo $pm -y install \
 	wget
 ok
 
+
+#########################################################
 action "Installing Mutate"
 sudo $pm install -y \
   qt5-qmake \
@@ -71,7 +74,8 @@ action "Adding Mutate to autostart"
 cp /usr/share/applications/Mutate.desktop ~/.config/autostart/mutate.desktop
 ok
 
-info "Mutate default keybinding is Ctrl-D"
+action "Change default keybinding for mutate to Alt+Space"
+sed -i -- 's/HotKey=Alt+D/HotKey=Alt+Space/g' ~/.config/Mutate/config.ini
+ok
 
-# TODO
-# how to change default keybinding for mutate
+#########################################################
