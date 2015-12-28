@@ -19,8 +19,23 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	die 'implementation unfinished'
+  action "Installing GNURadio"
+  mkdir ~/hackrf_files
+  wget http://www.sbrac.org/files/build-gnuradio -O ~/hackrf_files/build-gnuradio.sh
+  chmod 744 ~/hackrf_files/build-gnuradio.sh
+  ~/hackrf_files/build-gnuradio.sh
+  ok
+  
+  action "Installing HackRF tools"
+  cd ~/hackrf_files && git clone https://github.com/mossmann/hackrf.git
+  cd ~/hackrf_files/hackrf/host && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
+  ok
 fi
+
+
+
+
+
 
 
 # installed brew formulae for HackRFsystem s Development
