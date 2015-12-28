@@ -67,6 +67,11 @@ sed -i "s|{home}|$HOME|g" ~/.config/Mutate/config.ini
 rm -rf Mutate
 ok
 
+action "Adding Mutate to autostart"
+cp /usr/share/applications/Mutate.desktop ~/.config/autostart/mutate.desktop
+ok
+
+info "Mutate default keybinding is Ctrl-D"
+
 # TODO
-# how to add mutate to startup apps
 # how to change default keybinding for mutate
