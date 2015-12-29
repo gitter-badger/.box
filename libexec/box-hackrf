@@ -15,7 +15,63 @@ get_platform
 bot "Installing HackRF Tools"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	die 'implementation unfinished'
+  action "Install python preqequisites"
+  require_brew python
+  require_brew gcc
+  require_brew swig
+  ok
+  
+  action "Install prerequisite python packages"
+  pip install numpy
+  pip install Cheetah
+  pip install lxml
+  # pip install https://github.com/scipy/scipy/archive/v0.12.0.tar.gz
+  pip install scipy
+  export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"
+  # pip install https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
+  pip install matplotlib
+  # Install wxmac 2.9 with python bindings
+  require_brew wxmac --python
+  ok
+
+  # brew tap andresv/homebrew-gnuradio
+  brew tap godber/godber
+
+  action "Install gnuradio"
+  require_brew gnuradio
+  ok
+
+  action "Install rtl-sdr"
+  require_brew rtl-sdr
+  ok
+
+  action "Install hackrf"
+  require_brew hackrf
+  ok
+
+  mkdir ~/.gnuradio
+  profile_write '[grc]' '~/.gnuradio/config.conf'
+  profile_write 'local_blocks_path=/usr/local/share/gnuradio/grc/blocks' '~/.gnuradio/config.conf'
+
+  action "Install HackRF & RTL-SDR related blocks"
+  require_brew gnuradio-osmosdr
+  ok
+  
+  action "Install GQRX"
+  require_brew gqrx
+  brew linkapps gqrx
+  ok
+
+  # gqrx
+  # And then configure it to use the HackRF. 
+  # Probably best to start the sample rate at 1000000 until you know how much your system can handle.
+  #
+  # Congratulations!!
+  # Everything should now be working. It is time to give it a try! Below are some of the programs you can try
+  #
+  # gnuradio-companion
+  # osmocom_fft -a hackrf
+
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
@@ -31,74 +87,5 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   cd ~/hackrf_files/hackrf/host && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
   ok
 fi
-
-
-
-
-
-
-
-# installed brew formulae for HackRFsystem s Development
-
-# HackRF OSX Install
-# This will walk you through getting HackRF to work on OSX. It is really just an adaptation of the awesome collection of Homebrew recipes from Titanous for getting GNU Radio running on OSX.
-#
-# Installation
-#
-# These steps have been tested on Mountain Lion 10.8.4 with Xcode 4.6.3. It is probably a good idea to make sure all OSX updates have been applied and Xcode is up to date. Also, probably good to install the Xcode command line apps as explained over atStackoverflow.
-#
-# Install Homebrew if you haven't already
-#
-# ruby -e "$(curl -fsSL https://raw.github.com/mxcl/homebrew/go)"
-# or if you already have it installed, update and upgrade everything:
-#
-# brew update
-# brew upgrade
-# After that is done run the following to make sure you have no issues with your setup, cleanup anything it catches
-#
-# brew doctor
-# Add this line to your profile (ie ~/.profile or ~/.bash_profile or ~/.zshenv) and reload your profile (source ~/.profile or exec $SHELL)
-#
-# export PATH=/usr/local/sbin:/usr/local/bin:$PATH
-# Install the python package prerequisites
-#
-# require_brew python gcc swig
-# Install the prerequisite python packages
-#
-# pip install numpy Cheetah lxml
-# pip install https://github.com/scipy/scipy/archive/v0.12.0.tar.gz
-# export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"
-# pip install https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
-# Install wxmac 2.9 with python bindings
-#
-# require_brew wxmac --python
-# Install gnuradio
-#
-# brew tap robotastic/homebrew-hackrf
-# require_brew gnuradio --with-qt
-# Install HackRF Libraries
-#
-# require_brew hackrf
-# Create the ~/.gnuradio/config.conf config file for custom block support and add this into it
-#
-# [grc]
-# local_blocks_path=/usr/local/share/gnuradio/grc/blocks
-# Install HackRF & RTL-SDR related blocks
-#
-# require_brew rtlsdr gr-osmosdr gr-baz --HEAD
-# If you want a graphic interface to play with your HackRF, GQRX is great To install it:
-#
-# require_brew --HEAD gqrx
-# To run:
-#
-# gqrx
-# And then configure it to use the HackRF. Probably best to start the sample rate at 1000000 until you know how much your system can handle.
-#
-# Congratulations!!
-#
-# Everything should now be working. It is time to give it a try! Below are some of the programs you can try
-#
-# gnuradio-companion
-# osmocom_fft -a hackrf
 
 exit
