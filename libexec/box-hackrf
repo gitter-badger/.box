@@ -58,6 +58,15 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew gqrx
   brew linkapps gqrx
   ok
+  
+  action "Installing Inspectrum"
+  brew install qt5 fftw cmake pkg-config
+  git clone https://github.com/miek/inspectrum.git
+  cd inspectrum
+  mkdir build
+  cd build
+  CMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake cmake ..
+  make install
 
 fi
 
@@ -73,6 +82,18 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   cd ~/hackrf_files && git clone https://github.com/mossmann/hackrf.git
   cd ~/hackrf_files/hackrf/host && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
   ok
+  
+  action "Installing Inspectrum"
+  sudo apt-get install qt5-default libfftw3-dev cmake pkg-config
+  git clone https://github.com/miek/inspectrum.git
+  cd inspectrum
+  mkdir build
+  cd build
+  cmake ..
+  make
+  sudo make install
+  ok
+  
 fi
 
 exit
