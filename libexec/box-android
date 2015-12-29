@@ -19,12 +19,12 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   ok
 
   action "Install Android Studio"
-	require_cask android-studio
-	ok
+  require_cask android-studio
+  ok
 
-	# action "Install APK Tool"
-	# require_brew apktool
-	# ok
+  # action "Install APK Tool"
+  # require_brew apktool
+  # ok
 
 fi
 
@@ -35,10 +35,11 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get install -y android-tools-adb android-tools-fastboot
   ok
 
-	action "Install Android Studio"
-	sudo apt-add-repository ppa:paolorotolo/android-studio
-	sudo apt-get update
-	sudo apt-get install -y android-studio
+  action "Install Android Studio"
+  sudo apt-add-repository ppa:paolorotolo/android-studio
+  sudo apt-get update
+  sudo apt-get install -y android-studio
+  ok
 
 fi
 
