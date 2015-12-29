@@ -12,9 +12,7 @@ get_platform
 bot "Installing MemcacheD"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-  running "installing memcached"
   require_brew memcached
-  ok
   
   running "setting memcached to start automatically"
   # To have launchd start memcached at login:

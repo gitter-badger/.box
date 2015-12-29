@@ -12,12 +12,13 @@ get_platform
 bot "Installing MongoDB"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	require_brew mongo
+  require_brew mongo
 
-	# launch mongodb at startup
-	ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
-	# launch mongodb now
-	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+  running "setting mongodb to start automatically"
+  ln -sfv /usr/local/opt/mongodb/*.plist ~/Library/LaunchAgents
+  # launch mongodb now
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mongodb.plist
+  ok
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
