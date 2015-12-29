@@ -60,14 +60,19 @@ jenv enable-plugin maven scala
 jenv enable-plugin maven vlt
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-# action "finding current java versions"
-# read /Library/Java/JavaVirtualMachines/
-# for each entry
-# jenv add /Library/Java/JavaVirtualMachines/{entry}/Contents/Home
+  action "finding current java versions"
+  for D in `find /Library/Java/JavaVirtualMachines -type d -maxdepth 1`
+  do
+    if ! [ $D = '/Library/Java/JavaVirtualMachines' ]; then
+      jenv add $D/Contents/Home
+    fi
+  done
+  ok
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-
+  # do same as above
+  # discover correct path to search on linux
 fi
 
 exit
