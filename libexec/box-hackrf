@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box hackrf
 # Summary: install hackrf tools
-# Help: This will print out when you run box help hackrf
-# You can have multiple lines even!
-#
-#    Show off an example indented
+# Help: 
 #
 source "$_BOX_ROOT/lib/box_functions"
 
@@ -61,16 +58,6 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew gqrx
   brew linkapps gqrx
   ok
-
-  # gqrx
-  # And then configure it to use the HackRF. 
-  # Probably best to start the sample rate at 1000000 until you know how much your system can handle.
-  #
-  # Congratulations!!
-  # Everything should now be working. It is time to give it a try! Below are some of the programs you can try
-  #
-  # gnuradio-companion
-  # osmocom_fft -a hackrf
 
 fi
 
