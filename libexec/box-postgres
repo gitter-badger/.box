@@ -15,21 +15,22 @@ get_platform
 bot "Installing Postgres"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
-	require_brew postgresql
+  require_brew postgresql
 
-	# launch postgres at startup
-	ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
-	# initialize database
-	initdb /usr/local/var/postgres
-	# launch postgres now
-	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  running "setting postgres to start automatically"
+  ln -sfv /usr/local/opt/postgresql/*.plist ~/Library/LaunchAgents
+  # initialize database
+  initdb /usr/local/var/postgres
+  # launch postgres now
+  launchctl load ~/Library/LaunchAgents/homebrew.mxcl.postgresql.plist
+  ok
 
 	# install ui query browser
 	require_cask pgadmin3
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
-	sudo apt-get install -y postgresql postgresql-contrib pgadmin3
+  sudo apt-get install -y postgresql postgresql-contrib pgadmin3
 fi
 
 exit

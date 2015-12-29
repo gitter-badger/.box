@@ -14,11 +14,12 @@ bot "installing MySQL"
 if [ "$NS_PLATFORM" == "darwin" ]; then
 	require_brew mysql
 
-	# launch mysql at startup
+  running "setting mysql to start automatically"
 	ln -sfv /usr/local/opt/mysql/*.plist ~/Library/LaunchAgents
 	# launch mysql now
 	launchctl load ~/Library/LaunchAgents/homebrew.mxcl.mysql.plist
-
+  ok
+  
 	# install ui query browser
 	require_cask sequel-pro
 fi
