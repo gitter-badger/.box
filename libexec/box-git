@@ -27,6 +27,11 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew gibo
   ok
 
+  action "Writing OS Specific .gitignore_global"
+  mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
+  # use gibo to populate a sensible global gitignore
+  gibo OSX >> "$HOME/.gitignore_global"
+  ok
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
@@ -39,14 +44,13 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
   ok
 
+  action "Writing OS Specific .gitignore_global"
+  mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
+  # use gibo to populate a sensible global gitignore
+  gibo Linux >> "$HOME/.gitignore_global"
+  ok
+
 fi
-
-action "Backup existing .gitignore_global"
-mv "$HOME/.gitignore_global" "$HOME/.gitignore_global_bak"
-ok
-
-# use gibo to populate a sensible global gitignore
-gibo OSX Rails Ruby Python SublimeText Textmate Jetbrains Vagrant >> "$HOME/.gitignore_global"
 
 action "Configure GIT user"
 git config --global color.ui true
