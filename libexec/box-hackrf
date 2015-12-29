@@ -22,43 +22,34 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   pip install numpy
   pip install Cheetah
   pip install lxml
-  # pip install https://github.com/scipy/scipy/archive/v0.12.0.tar.gz
   pip install scipy
   export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"
-  # pip install https://downloads.sourceforge.net/project/matplotlib/matplotlib/matplotlib-1.2.1/matplotlib-1.2.1.tar.gz
   pip install matplotlib
   # Install wxmac 2.9 with python bindings
   require_brew wxmac --python
   ok
 
-  # brew tap andresv/homebrew-gnuradio
   brew tap godber/godber
 
   action "Install gnuradio"
   require_brew gnuradio
   ok
 
-  action "Install rtl-sdr"
-  require_brew rtl-sdr
-  ok
-
-  action "Install hackrf"
-  require_brew hackrf
-  ok
-
-  mkdir ~/.gnuradio
-  profile_write '[grc]' '~/.gnuradio/config.conf'
-  profile_write 'local_blocks_path=/usr/local/share/gnuradio/grc/blocks' '~/.gnuradio/config.conf'
+  mkdir $HOME/.gnuradio
+  profile_write '[grc]' $HOME/.gnuradio/config.conf
+  profile_write 'local_blocks_path=/usr/local/share/gnuradio/grc/blocks' $HOME/.gnuradio/config.conf
 
   action "Install HackRF & RTL-SDR related blocks"
-  require_brew gnuradio-osmosdr
+  require_brew rtl-sdr
+  require_brew hackrf
+  require_brew gr-osmosdr
   ok
   
   action "Install GQRX"
   require_brew gqrx
   brew linkapps gqrx
   ok
-  
+
   action "Installing Inspectrum"
   brew install qt5 fftw cmake pkg-config
   git clone https://github.com/miek/inspectrum.git
@@ -68,6 +59,10 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   CMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake cmake ..
   make install
 
+  # this process allows all software to install without complaint
+  # however, the gr-osmosdr install causes gnuradio-companion to fail to start
+  # Fatal Python error: PyThreadState_Get: no current thread
+  # 
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
