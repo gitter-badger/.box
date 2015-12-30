@@ -61,21 +61,4 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get install -y pycharm
 fi
 
-# pyenv install 2.7.11
-# pyenv install 3.5.1
-# pyenv rehash
-
-
-# # list virtualenvs
-# pyenv virtualenvs
-
-# # create a new virtualenv
-# pyenv virtualenv $ENV_NAME
-
-# # destroy a  virtualenv
-# pyenv uninstall $ENV_NAME
-
-# # create a directory switch for a virtualenv
-# python local $ENV_NAME
-
 exit

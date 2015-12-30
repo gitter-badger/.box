@@ -56,10 +56,3 @@ Customize in `~/.laptop.local`
 
 * review https://github.com/atomantic and borrow more of their goodness
 
-* add script(s) for easy creation of project dirs
- - create new dir
- - create autoenv (.env) conf file for dir
-   - set GOPATH for go projects
-   - set .ruby-version and .ruby-gemset for ruby projects
-   - set jvm version for java projects
-   - set ALL the things for python and others.. oh my..
