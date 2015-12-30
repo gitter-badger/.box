@@ -26,29 +26,25 @@ Execute a command:
 ~/.box/bin/box defaults
 ```
 
-###Next Steps for OSX
+###Next Steps
 ```bash
-~/.box/bin/box xcode
-~/.box/bin/box homebrew
 ~/.box/bin/box essentials
 ~/.box/bin/box defaults
 ```
 
 Customize in `~/.laptop.local`
 ------------------------------
-  Your `~/.laptop.local` is run at the end of the Essentials command.
+  Your `~/.laptop.local` is run at the end of the Essentials command for OSX.
   Put desired customizations there.
   See .laptop.local.example for example customizations
 
 
 ##TODO
 
-* maybe update antigen to https://github.com/Tarrasch/antigen-hs for faster loding of zsh env
-
 * add switches to packages
   - maybe i don't want to install the UI app for MySQL.. etc..
 
-* add usage and help documentation for each package
+* improve usage and help documentation for each package
 
 * handle package dependencies
   - i.e. darwin platform requires homebrew and xcode
