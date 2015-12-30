@@ -17,22 +17,19 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_brew gcc
   require_brew swig
   ok
-  
+
   action "Install prerequisite python packages"
-  pip install numpy
-  pip install Cheetah
-  pip install lxml
-  pip install scipy
-  export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"
-  pip install matplotlib
-  # Install wxmac 2.9 with python bindings
-  require_brew wxmac --python
+    pip install numpy
+    pip install Cheetah
+    pip install lxml
+    pip install scipy
+    export PKG_CONFIG_PATH="/usr/X11/lib/pkgconfig"
+    pip install matplotlib
+    require_brew wxmac --python
   ok
 
-  brew tap godber/godber
-
   action "Install gnuradio"
-  require_brew gnuradio
+    require_brew gnuradio
   ok
 
   mkdir $HOME/.gnuradio
@@ -40,15 +37,19 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   profile_write 'local_blocks_path=/usr/local/share/gnuradio/grc/blocks' $HOME/.gnuradio/config.conf
 
   action "Install HackRF & RTL-SDR related blocks"
-  require_brew rtl-sdr
-  require_brew hackrf
-  require_brew gr-osmosdr
+    brew install hackrf
+    brew install rtl-sdr
+    brew install librtlsdr --HEAD
+    brew tap chleggett/gr-osmosdr
+    brew install gr-osmosdr
   ok
-  
+
   action "Install GQRX"
-  require_brew gqrx
-  brew linkapps gqrx
+    brew tap chleggett/gqrx
+    brew install gqrx
+    brew linkapps gqrx
   ok
+
 
   action "Installing Inspectrum"
   brew install qt5 fftw cmake pkg-config
@@ -59,10 +60,7 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   CMAKE_PREFIX_PATH=$(brew --prefix qt5)/lib/cmake cmake ..
   make install
 
-  # this process allows all software to install without complaint
-  # however, the gr-osmosdr install causes gnuradio-companion to fail to start
-  # Fatal Python error: PyThreadState_Get: no current thread
-  # 
+  # this is messy.. but it's working on El Capitan
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
@@ -94,6 +92,8 @@ if [ "$NS_PLATFORM" == "linux" ]; then
  # libGL error: core dri or dri2 extension not found
  # libGL error: failed to load driver: vboxvideo
  #
+ # when run in a parallels 11 VM
+ # everything seems to work except for continuous audio underflow errors
 fi
 
 exit
