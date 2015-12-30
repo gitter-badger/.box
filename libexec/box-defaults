@@ -11,15 +11,8 @@ get_platform
 
 bot "Setting System Defaults"
 
-if [ "$NS_PLATFORM" == "darwin" ]; then
-  source "$_BOX_ROOT/lib/box-defaults/_darwin.sh"
-  ln -s $_BOX_ROOT/lib/box-defaults/_aliases_darwin $HOME/.aliases
-fi
-
-if [ "$NS_PLATFORM" == "linux" ]; then
-  source "$_BOX_ROOT/lib/box-defaults/_linux.sh"
-  ln -s $_BOX_ROOT/lib/box-defaults/_aliases_linux $HOME/.aliases
-fi
+source "$_BOX_ROOT/lib/box-defaults/_$NS_PLATFORM.sh"
+ln -s $_BOX_ROOT/lib/box-defaults/_aliases_$NS_PLATFORM $HOME/.aliases
 
 profile_write "source $HOME/.aliases" $CODERONIN_DOTFILE
 

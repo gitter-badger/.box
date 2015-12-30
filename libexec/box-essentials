@@ -34,11 +34,8 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
     xcode-select --install
   fi
   ok
-  source "$_BOX_ROOT/lib/box-essentials/_darwin.sh"
 fi
 
-if [ "$NS_PLATFORM" == "linux" ]; then
-  source "$_BOX_ROOT/lib/box-essentials/_linux.sh"
-fi
+source "$_BOX_ROOT/lib/box-essentials/_$NS_PLATFORM.sh"
 
 exit
