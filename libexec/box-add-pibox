@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Usage: box add-pibox
+# Summary: add the .pibox repo
+# Help: 
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+running "fetching the .pibox repo"
+git clone https://github.com/bhedana/.pibox $HOME/.pibox
+ok
+
+running "adding .pibox to path"
+touch "$CODERONIN_DOTFILE"
+profile_write 'eval "$($HOME/.pibox/bin/pibox init -)"' $CODERONIN_DOTFILE
+ok
+
+exit
+

@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Usage: box add-proj
+# Summary: add the .proj repo
+# Help: 
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+running "fetching the .proj repo"
+git clone https://github.com/bhedana/.proj $HOME/.proj
+ok
+
+running "adding .proj to path"
+touch "$CODERONIN_DOTFILE"
+profile_write 'eval "$($HOME/.proj/bin/proj init -)"' $CODERONIN_DOTFILE
+ok
+
+exit
+

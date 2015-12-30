@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Usage: box add-pitap2
+# Summary: add the .pitap2 repo
+# Help: 
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+running "fetching the .pitap2 repo"
+git clone https://github.com/bhedana/.pitap2 $HOME/.pitap2
+ok
+
+running "adding .pitap2 to path"
+touch "$CODERONIN_DOTFILE"
+profile_write 'eval "$($HOME/.pitap2/bin/pitap2 init -)"' $CODERONIN_DOTFILE
+ok
+
+exit
+

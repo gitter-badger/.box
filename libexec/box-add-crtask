@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+# Usage: box add-crtask
+# Summary: add the .crtask repo
+# Help: 
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+running "fetching the .crtask repo"
+git clone https://github.com/bhedana/.crtask $HOME/.crtask
+ok
+
+running "adding .crtask to path"
+touch "$CODERONIN_DOTFILE"
+profile_write 'eval "$($HOME/.crtask/bin/crtask init -)"' $CODERONIN_DOTFILE
+ok
+
+exit
+
