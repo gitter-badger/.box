@@ -13,7 +13,7 @@ git clone git@github.com:bhedana/box.git ~/.box
 
 See what commands are available:
 ```bash
-~/.box/bin/box commands
+~/.box/bin/box
 ```
 
 See detailed help for commands:
