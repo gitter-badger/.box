@@ -72,14 +72,14 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   chmod 744 ~/hackrf_files/build-gnuradio.sh
   ~/hackrf_files/build-gnuradio.sh
   ok
-  
+
   action "Installing HackRF tools"
   cd ~/hackrf_files && git clone https://github.com/mossmann/hackrf.git
   cd ~/hackrf_files/hackrf/host && mkdir build && cd build && cmake .. && make && sudo make install && sudo ldconfig
   ok
-  
+
   action "Installing Inspectrum"
-  sudo apt-get install qt5-default libfftw3-dev cmake pkg-config
+  sudo apt-get install -y qt5-default libfftw3-dev cmake pkg-config
   git clone https://github.com/miek/inspectrum.git
   cd inspectrum
   mkdir build
@@ -88,7 +88,12 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   make
   sudo make install
   ok
-  
+
+ # when run in a virtualbox VM
+ # gnuradio companion fails to render visual elements in WX GUI FFT Sink
+ # libGL error: core dri or dri2 extension not found
+ # libGL error: failed to load driver: vboxvideo
+ #
 fi
 
 exit
