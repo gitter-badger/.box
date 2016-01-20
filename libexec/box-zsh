@@ -80,9 +80,8 @@ antigen bundle textmate
 antigen bundle vagrant
 antigen bundle pyenv
 
-
 # Syntax bundles from external sources
-antigen bundle kennethreitz/autoenv
+antigen bundle horosgrisa/autoenv
 antigen bundle zsh-users/zsh-syntax-highlighting
 
 # Load the theme.
