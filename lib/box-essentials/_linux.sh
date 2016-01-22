@@ -20,6 +20,7 @@ sudo $pm -y install \
   automake \
   bison \
   build-essential \
+  module-assistant \
   clang \
   curl \
 	git \
@@ -43,6 +44,7 @@ sudo $pm -y install \
 	wget
 ok
 
+sudo m-a prepare
 
 #########################################################
 action "Installing Mutate"
