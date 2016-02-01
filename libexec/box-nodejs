@@ -14,12 +14,6 @@ get_platform
 
 bot "Installing NodeJS Development tools"
 
-if [ "$NS_PLATFORM" == "darwin" ]; then
-fi
-
-if [ "$NS_PLATFORM" == "linux" ]; then
-fi
-
 # node version manager
 # allows per directory node versions with .nvmrc files
 curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.30.2/install.sh | bash
