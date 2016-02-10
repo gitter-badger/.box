@@ -67,7 +67,6 @@ antigen bundle node
 antigen bundle npm
 antigen bundle osx
 antigen bundle pip
-antigen bundle pyenv
 antigen bundle pylint
 antigen bundle python
 antigen bundle rails
@@ -75,10 +74,8 @@ antigen bundle redis-cli
 antigen bundle ruby
 antigen bundle rvm
 antigen bundle screen
-antigen bundle sublime
 antigen bundle textmate
 antigen bundle vagrant
-antigen bundle pyenv
 
 # Syntax bundles from external sources
 antigen bundle horosgrisa/autoenv
