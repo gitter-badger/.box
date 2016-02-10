@@ -23,6 +23,8 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo dpkg --install atom-amd64.deb
   rm -f atom-amd64.deb
 
+  apm install linter-eslint
+
   warn "Currently only a 64-bit version is available."
   warn "The Linux version does not currently automatically update"
   warn "so you will need to repeat these steps to upgrade to future releases."
