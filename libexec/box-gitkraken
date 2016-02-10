@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Usage: box $1
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help $1
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+bot "RELEASE THE KRAKEN!!!"
+
+if [ "$NS_PLATFORM" == "darwin" ]; then
+  wget https://release.gitkraken.com/darwin/installGitKraken.dmg
+  die 'Sorry-- requires manual intervetion'
+fi
+if [ "$NS_PLATFORM" == "linux" ]; then
+  wget https://release.gitkraken.com/linux/gitkraken-amd64.deb
+  sudo dpkg --install gitkraken-amd64.deb
+  rm -f gitkraken-amd64.deb
+fi
+
+exit
+
+
