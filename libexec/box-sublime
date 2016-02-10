@@ -1,5 +1,13 @@
 #!/usr/bin/env bash
+# Usage: box text-editor
+# Summary: install an advanced text editor
+# Help:
+#
 source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
 
 bot "Install Sublime Text"
 
@@ -7,11 +15,11 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   require_cask sublime-text
 	
   running "set out custom preferences for sublime"
-  cp "$_BOX_ROOT/lib/box-sublime-text/Preferences.sublime-settings" ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings
+  cp "$_BOX_ROOT/lib/box-sublime/Preferences.sublime-settings" ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/User/Preferences.sublime-settings
   ok
 
   running "try install package manager -- this may have to be done manuually"
-  cp "$_BOX_ROOT/liv/box-sublime-text/Package\ Control.sublime-package" ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/Package\ Control.sublime-packag
+  cp "$_BOX_ROOT/liv/box-sublime/Package\ Control.sublime-package" ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/Package\ Control.sublime-packag
   ok
   # https://sublime.wbond.net/installation#st2
   git_clone_or_update https://github.com/wbond/sublime_alignment.git ~/Library/Application\ Support/Sublime\ Text\ 2/Packages/sublime_alignment
@@ -38,7 +46,9 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo apt-get install -y sublime-text
 
   running "set out custom preferences for sublime"
-  cp "$_BOX_ROOT/lib/box-sublime-text/Preferences.sublime-settings" "$HOME/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
+  cp "$_BOX_ROOT/lib/box-sublime/Preferences.sublime-settings" "$HOME/.config/sublime-text-2/Packages/User/Preferences.sublime-settings"
   ok
   # determine correct path and add package manager and packages from above
 fi
+
+exit

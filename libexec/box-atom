@@ -1,7 +1,18 @@
 #!/usr/bin/env bash
+# Usage: box $1
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help $1
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
 source "$_BOX_ROOT/lib/box_functions"
 
-bot "Install Atom Text Editor"
+banner
+
+get_platform
+
+bot "Atom: A hackable text editor for the 21st Century"
 
 running "installing atom"
 if [ "$NS_PLATFORM" == "darwin" ]; then
@@ -30,3 +41,6 @@ ok
 # # In keymap.cson add
 # '.workspace .editor:not(.mini), .workspace, .platform-darwin, .platform-win32, .platform-linux':
 #   'cmd-i': 'settings:toggle-show-invisibles'
+
+exit
+
