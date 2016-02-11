@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+# Usage: box $1
+# Summary: write a summary for your new command
+# Help: This will print out when you run box help $1
+# You can have multiple lines even!
+#
+#    Show off an example indented
+#
+source "$_BOX_ROOT/lib/box_functions"
+
+banner
+
+get_platform
+
+bot "Installing nodeschool lessons"
+
+npm install -g javascripting
+npm install -g learnyounode
+npm install -g how-to-npm
+npm install -g git-it
+npm install -g node-debug-school
+npm install -g test-anything
+npm install -g learn-generators
+npm install -g kick-off-koa
+
+exit
