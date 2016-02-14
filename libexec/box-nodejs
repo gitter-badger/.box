@@ -29,40 +29,23 @@ export NVM_DIR="$HOME/.nvm"
 nvm install 5.4
 nvm alias default 5.4
 
-npm install -g sails
-npm install -g bower
-
-
-# ###############################################################################
-# bot "NPM Globals..."
-# ###############################################################################
-# require_npm antic
-# # http://ionicframework.com/
-# require_npm cordova
-# require_npm ionic
-# # https://github.com/markdalgleish/bespoke.js
-# require_npm generator-bespoke
-# require_npm grunt
-# require_npm gulp
-# require_npm jshint
-# # http://devo.ps/blog/goodbye-node-forever-hello-pm2/
-# require_npm pm2
-# require_npm prettyjson
-# require_npm supervisor
-# # https://github.com/sindresorhus/trash
-# require_npm trash
-# # https://github.com/MrRio/vtop
-# require_npm vtop
-# require_npm yo
-
-# Creating your Sails app
-# You will want to navigate to the directory in which you would like your app to be located, e.g. /var/www and then run:
-#
-# sails new project-name
-# This will add the required files to your project, and create a directory named project-name.
-#
-# cd project-name
-# npm install
-# sails lift
+###############################################################################
+bot "NPM Installing ESLint and plugins as globals..."
+###############################################################################
+npm install -g eslint
+npm install -g eslint-plugin-arrow-function
+npm install -g eslint-plugin-babel
+npm install -g eslint-plugin-chai
+npm install -g eslint-plugin-filenames
+npm install -g eslint-plugin-html
+npm install -g eslint-plugin-json
+npm install -g eslint-plugin-jsdoc
+npm install -g eslint-plugin-lodash3
+npm install -g eslint-plugin-member-order
+npm install -g eslint-plugin-mocha
+npm install -g eslint-plugin-node
+npm install -g eslint-plugin-objects
+npm install -g eslint-plugin-react
+npm install -g eslint-plugin-smells
 
 exit
