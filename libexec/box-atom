@@ -23,14 +23,16 @@ if [ "$NS_PLATFORM" == "linux" ]; then
   sudo dpkg --install atom-amd64.deb
   rm -f atom-amd64.deb
 
-  apm install linter-eslint
-
   warn "Currently only a 64-bit version is available."
   warn "The Linux version does not currently automatically update"
   warn "so you will need to repeat these steps to upgrade to future releases."
 fi
 ok
 
+
+apm install linter
+apm install linter-eslint
+apm install atom-beautify
 
 # # create keyboard command to show invisible characters
 #
@@ -45,4 +47,3 @@ ok
 #   'cmd-i': 'settings:toggle-show-invisibles'
 
 exit
-
