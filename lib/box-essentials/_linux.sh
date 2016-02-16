@@ -23,8 +23,7 @@ sudo $pm -y install \
   module-assistant \
   clang \
   curl \
-	git \
-	gitk \
+  git \
   libxslt1.1 \
   libssl-dev \
   libxslt1-dev \
@@ -41,7 +40,7 @@ sudo $pm -y install \
   xclip \
   zlib1g \
   zlib1g-dev \
-	wget
+  wget
 ok
 
 sudo m-a prepare
