@@ -39,8 +39,6 @@ gsettings set org.mate.Marco.window-keybindings move-to-workspace-right ""
 
 ok
 
-# turn on alt-space for Mutate default
-
 #########################################################
 action "Installing Mutate"
 sudo $pm install -y \
@@ -71,6 +69,7 @@ action "Adding Mutate to autostart"
 cp /usr/share/applications/Mutate.desktop ~/.config/autostart/mutate.desktop
 ok
 
+# turn on alt-space for Mutate default
 action "Change default keybinding for mutate to Alt+Space"
 sed -i -- 's/HotKey=Alt+D/HotKey=Alt+Space/g' ~/.config/Mutate/config.ini
 ok
