@@ -3,7 +3,7 @@ sudo apt-get update
 sudo apt-get install -y git
 
 # install .box
-git clone https://github.com/bhedana/box.git .box
+git clone https://github.com/bhedana/.box.git .box
 # temporarily activate box
 eval "$(~/.box/bin/box init -)"
 
@@ -12,10 +12,21 @@ box essentials
 box defaults
 
 # install guest additions
+  # mount cd
+  # open terminal
+  # cd to /media/user/guest additions cd
+  # sudo ./VBoxLinux.run
+  # shut down guest
 # enable bidirectional clipboard sharing
 
 box ssh
 # add key to github
+# had to do this locally as bidir copy paste not currently working
 
 box zsh
-box text-editor
+# reboot to affect change
+box atom
+box gitkraken
+
+sudo apt-get install git-flow
+sudo echo 'coderonin ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/coderonin
