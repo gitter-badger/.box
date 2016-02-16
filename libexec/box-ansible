@@ -13,6 +13,11 @@ action "install ansible from source"
   git clone git://github.com/ansible/ansible.git --recursive
   cd ./ansible
   source ./hacking/env-setup
+  # Once running the env-setup script you’ll be running from checkout and the
+  # default inventory file will be /etc/ansible/hosts. You can optionally specify
+  # an inventory file (see Inventory) other than /etc/ansible/hosts:
+  echo "127.0.0.1" > ~/ansible_hosts
+  export ANSIBLE_INVENTORY=~/ansible_hosts
 ok
 
 action "install python dependencies"
@@ -31,11 +36,5 @@ ok
 # # but also the “submodules” in git which point at Ansible’s own modules (not the same kind of modules, alas).
 # $ git pull --rebase
 # $ git submodule update --init --recursive
-
-# # Once running the env-setup script you’ll be running from checkout and the
-# # default inventory file will be /etc/ansible/hosts. You can optionally specify
-# # an inventory file (see Inventory) other than /etc/ansible/hosts:
-# $ echo "127.0.0.1" > ~/ansible_hosts
-# $ export ANSIBLE_INVENTORY=~/ansible_hosts
 
 exit
