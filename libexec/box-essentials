@@ -16,7 +16,6 @@ get_platform
 bot "Install System Essential tools"
 
 # ensure our primary customizations dotfile is present
-touch "$CODERONIN_DOTFILE"
 profile_write 'eval "$($HOME/.box/bin/box init -)"' $CODERONIN_DOTFILE
 
 # add line to .profile to source our CODERONIN_DOTFILE

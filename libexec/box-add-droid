@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 # Usage: box add-droid
 # Summary: add the .droid repo
-# Help: 
+# Help:
 #
 source "$_BOX_ROOT/lib/box_functions"
 
@@ -14,9 +14,7 @@ git clone https://github.com/bhedana/.droid $HOME/.droid
 ok
 
 running "adding .droid to path"
-touch "$CODERONIN_DOTFILE"
 profile_write 'eval "$($HOME/.droid/bin/droid init -)"' $CODERONIN_DOTFILE
 ok
 
 exit
-

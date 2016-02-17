@@ -30,7 +30,6 @@ if [ "$NS_PLATFORM" == "darwin" ]; then
   ok
 
   running "boot2docker shellinit"
-    touch "$CODERONIN_DOTFILE"
     profile_write 'eval "$(boot2docker shellinit)"' $CODERONIN_DOTFILE
   ok
 
