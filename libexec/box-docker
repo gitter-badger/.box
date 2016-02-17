@@ -12,11 +12,29 @@ get_platform
 bot "Install Docker"
 
 if [ "$NS_PLATFORM" == "darwin" ]; then
+
+  # Running Docker on Mac requires VirtualBox so if you don’t have it already:
+  require_cask virtualbox
+
+  # Then install Docker and the helper tool boot2docker:
+  require_brew docker
   require_brew boot2docker
-  boot2docker init
-  boot2docker start
-  $(boot2docker shellinit)
-  require_brew docker-compose
+
+  # boot2docker takes care of the VM that Docker runs in. To get things started
+  # it needs to download the Docker VM and start a daemon that the docker command
+  # line tool will talk to:
+  running "boot2docker initialize"
+    boot2docker init
+    boot2docker start
+    $(boot2docker shellinit)
+  ok
+
+  running "boot2docker shellinit"
+    touch "$CODERONIN_DOTFILE"
+    profile_write 'eval "$(boot2docker shellinit)"' $CODERONIN_DOTFILE
+  ok
+
+  # require_brew docker-compose
 fi
 
 if [ "$NS_PLATFORM" == "linux" ]; then
