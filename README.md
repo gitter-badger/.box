@@ -1,4 +1,6 @@
 # still a WIP
+
+[![Join the chat at https://gitter.im/bhedana/.box](https://badges.gitter.im/bhedana/.box.svg)](https://gitter.im/bhedana/.box?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 Use at your own risk
 
 # New System Development environment setup
